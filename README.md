@@ -3,13 +3,15 @@
 
 ## ▶️ 개발 동기
 
-##### 다나와싸이트를 이용하던 도중 내가 원하는 컨셉의 조립컴퓨터를 추천하는 챗봇기능이 있으면 좋겠다고 생각
-##### 기존 사용 서비스의 불편한점 or 추가할점을 강조
+##### 기존 컴퓨터 부품 사이트기능이 과하게 디테일하고 복잡했기 때문에 좀더 단순화 되고 컴퓨터 부품에만 집중할수있게 만들고 싶었습니다,
+##### 초보자는 과하게 디테일한 사이트를 이용하기위해 사전 지식을 직접 찾아야 했기 때문에 초보자 배려가 부족하다 느껴 초보자도 쉽게 이용할수있게 만들고 싶었습니다.
 <br/>
 
 ## ▶️ 개발 목표
 
-##### 챗봇기능이 추가된 조립 컴퓨터 추천 쇼핑몰 싸이트 구현 
+##### 중고 거레나 컴퓨터 악세사리에등 컴퓨터에 조립에 꼭 필요하지 않는 요소들을 배제하고 컴퓨터 필수 부품들만 취급하고 부품 목록을 직접 견적을 맞춰볼수있게 ui를 지원합니다.
+##### 초보자들이 부품의 용어들 (세대,i5,i7,부품에 적힌 숫자의 뜻 등)에대해 검색하지않고도 기본적인 설명을 볼수있도록 판매게시글의 제목에서 지정된 키워드들을 검색해 해당될경우 해당 키워드의 설명을 보여주는 기능을 만듭니다.
+##### 빠르고 쉽게 정보를 교환할수있도록 사이트 자체 게시판을 만들것이고 좋아요/싫어요 기능으로 답변률을 높일것입니다.
 <br/>
 
 ## ▶️ 개발 일정
@@ -22,23 +24,26 @@
 
 ## ▶️ 구성인원 
 
-##### 홍길동(조장)  : BackEnd (웹 기획,API 문서정리 , BackEnd 장바구니 결제 코드 구현)
-##### 남길동(조원1) : BackEnd (상품관련 CRUD 페이지 구현)
-##### 남길동(조원2) : BackEnd (유저관련 CRUD 페이지 구현)
+##### 윤광혁(조장) : BackEnd (기획,키워드 검색 및 검색 CRUD)
+##### 이재희(조원) : BackEnd (게시판 CRUD)
+##### 이종현(조원) : BackEnd/frontend (BackEnd보조 및 메인 페이지디자인)
+##### 남대희(조원2 : frontend (게시판 페이지 디자인)
+##### 이은지(조원) : frontend (상품 페이지 디자인)
 <br/>
 
 ## ▶️ 개발 환경(플랫폼)
 
 ##### OS : WINDOW Server 2022 base
 ##### CPU SPEC : I7 Intel 
-##### RAM SPEC : 16GB SAMSUNG DDR4
-##### DISK SPEC : 100GB SSD 
+##### RAM SPEC : 4GB SAMSUNG DDR4
+##### DISK SPEC : 30GB SSD 
 
 <br/>
 
 ## ▶️ IDE 종류
 
 ##### IntelliJ IDEA 2023-06
+
 <br/>
 
 ## ▶️ Software 목록
@@ -49,8 +54,7 @@
 ##### Git 3.1.1
 ##### Mysql Server 8.x.x
 ##### Mysql Workbench 8.x.x
-##### DbWeaver x.x
-##### ...
+
 <br/>
 
 ## ▶️ DevOps 
@@ -58,18 +62,18 @@
 ##### Amazon Web Service EC2(Deploy Server)
 ##### Amazon Web Service RDS(Remote Datebase Server)
 ##### Git & Github
-##### Docker(Server Image)
-##### Swagger(API Document)
-##### Adobe XD
+
 <br/>
 
 
 
 ## ▶️ 사용(or 예정) API
 
-##### 원포트 결제시스템 API
-##### Openweather API
-##### OAuth2 로그인 API
+##### KAKAO login API
+##### KAKAO 결제 API
+##### NAVER login API
+##### Google login API
+##### OAuth2 login API
 
 <br/>
 
