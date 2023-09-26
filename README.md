@@ -48,20 +48,18 @@
 
 ## ▶️ Software 목록
 
-##### IDE : IntelliJ IDEA 버전명
+##### IDE : IntelliJ IDEA 2023-06
 ##### SpringBoot 2.7.15
 ##### maven version 3.1.2
 ##### Git 3.1.1
-##### Mysql Server 8.x.x
-##### Mysql Workbench 8.x.x
+##### Mysql Server 8.0
+##### Mysql Workbench 8.0
 
 <br/>
 
 ## ▶️ DevOps 
 
 ##### Amazon Web Service EC2(Deploy Server)
-##### Amazon Web Service RDS(Remote Datebase Server)
-##### Git & Github
 
 <br/>
 
@@ -98,9 +96,9 @@ https://shields.io/
 
 |END POINT|METHOD|DESCRIPTION|
 |------|---|---|
-|/board/list|GET|자유게시판 모든 게시물 목록 표시|
-|/board/post|POST|자유게시판 게시물 첨부하기|
-|/board/read|GET|자유게시판 게시물 1건 보기|
+|/product/list|GET|상품 목록표시|
+|/product/set|POST|상품 등록|
+|/product/keyword|POST|상품 설명용 키워드 등록|
 <br/>
 
 
