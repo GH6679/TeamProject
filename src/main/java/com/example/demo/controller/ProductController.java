@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
+
 import com.example.demo.domain.dto.ProductDto;
 import com.example.demo.domain.dto.ProductKeywordDto;
+import com.example.demo.domain.entity.Product;
 import com.example.demo.domain.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,10 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -46,14 +43,10 @@ public class ProductController {
     }
 
     @PostMapping("/set")
-    public String product_post(ProductDto dto,@RequestParam("files")MultipartFile[] files) throws IOException {
-        String path = "c:\\etc\\products"+"\\"+dto.getProducttype()+"\\"+UUID.randomUUID();
+    public String product_post(ProductDto dto, @RequestParam("files") MultipartFile[] files) throws IOException {
 
-        //프로젝트내에 이미지파일을 저장하기위한 임시
-//        Resource resource = resourceLoader.getResource("classpath:static/img/");
+        String path = "c:\\etc\\products"+"\\"+dto.getProducttype()+"\\"+ UUID.randomUUID();
 
-//        String path = resource.getFile().getAbsolutePath()+"\\"+dto.getProducttype()+"\\"+UUID.randomUUID();
-//        System.out.println("path : "+path);
 
         //만약 폴더가 없으면 생성한다.
         File dir = new File(path);
@@ -92,6 +85,83 @@ public class ProductController {
 
         return "redirect:/product/index";
     }
+
+
+    @GetMapping("/get/{no}")
+    public String product_get(@PathVariable Long no, Model model) throws IOException {
+
+        log.info("GET /product/get..."+no);
+        ProductDto Proddto = productService.getProductOne(no);
+
+        //키워드 목록을 불러온다.
+        List<ProductKeywordDto> keydto = productService.getKeywordList();
+
+
+        //상품 하나하나에 키워드를 적용
+
+            List<String> explain = new ArrayList<>();
+            String[] explaintoString;
+            List<String> keywords = new ArrayList<>();
+            String[] keywordstoString;
+
+            //해당하는 키워드가 있는지 검색
+            for(int j=0;j<keydto.size();j++){
+
+                //해당 제목과 동일한 키워드가 있는지 확인
+                boolean iskey = Proddto.getProductname().contains(keydto.get(j).getKeyWordname());
+
+                if(iskey){
+
+                    explain.add(keydto.get(j).getKeyWordText());
+                    keywords.add(keydto.get(j).getKeyWordname());
+
+                }else{
+
+
+
+                }
+
+            }
+
+
+            //리스트를 String 배열로 변경
+            explaintoString = explain.toArray(new String[0]);
+            keywordstoString = keywords.toArray(new String[0]);
+
+            //리스트에 등록
+            Proddto.setProductkeywords(keywordstoString);
+            Proddto.setProductexplains(explaintoString);
+
+            log.info(Proddto.getProductname() +" 해당 키워드 : "+ Arrays.toString(Proddto.getProductkeywords())+ " 내용 : " + Arrays.toString(Proddto.getProductexplains()));
+
+            //base64 인코딩
+            if(!(Proddto.getProductimagepaths() ==null)){
+
+                List<String> base64encodelist = new ArrayList<>();
+                String[] base64encodeimg;
+
+                for(String img : Proddto.getProductimagepaths()){
+
+                    Path imgpath = Paths.get(img);
+                    byte[] imageData = Files.readAllBytes(imgpath);
+
+                    String base64encode = Base64.getEncoder().encodeToString(imageData);
+                    base64encodelist.add("data:image/jpeg;base64," + base64encode);
+
+                }
+                base64encodeimg = base64encodelist.toArray(new String[0]);
+                Proddto.setProductimagepaths(base64encodeimg);
+
+
+            }
+
+
+        model.addAttribute("ProductDto",Proddto);
+        return "/product/get";
+
+    }
+
+
 
     @GetMapping("/keyword/set")
     public void product_keyword() {

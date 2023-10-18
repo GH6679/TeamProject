@@ -31,7 +31,8 @@ public class ProductRestController {
         //상품목록 을 불러온다.
         List<ProductDto> listdto = productService.getProductList();
         //키워드 목록을 불러온다.
-        List<ProductKeywordDto> dto = productService.getKeywordList();
+        List<ProductKeywordDto> keydto = productService.getKeywordList();
+
 
         //상품 하나하나에 키워드를 적용
         for(int i=0;i<listdto.size();i++){
@@ -42,15 +43,15 @@ public class ProductRestController {
             String[] keywordstoString;
 
             //해당하는 키워드가 있는지 검색
-            for(int j=0;j<dto.size();j++){
+            for(int j=0;j<keydto.size();j++){
 
                 //해당 제목과 동일한 키워드가 있는지 확인
-                boolean iskey = listdto.get(i).getProductname().contains(dto.get(j).getKeyWordname());
+                boolean iskey = listdto.get(i).getProductname().contains(keydto.get(j).getKeyWordname());
 
                 if(iskey){
 
-                    explain.add(dto.get(j).getKeyWordText());
-                    keywords.add(dto.get(j).getKeyWordname());
+                    explain.add(keydto.get(j).getKeyWordText());
+                    keywords.add(keydto.get(j).getKeyWordname());
 
                 }else{
 
@@ -70,27 +71,20 @@ public class ProductRestController {
             listdto.get(i).setProductexplains(explaintoString);
 
             log.info(listdto.get(i).getProductname() +" 해당 키워드 : "+Arrays.toString(listdto.get(i).getProductkeywords())+ " 내용 : " + Arrays.toString(listdto.get(i).getProductexplains()));
-        }
 
-        //base64 인코딩
-        List<String> base64encodelist = new ArrayList<>();
-        String[] base64encodeimg;
-
-        for(int i=0;i<listdto.size();i++){
-
+            //base64 인코딩
             if(!(listdto.get(i).getProductimagepaths() ==null)){
 
+                List<String> base64encodelist = new ArrayList<>();
+                String[] base64encodeimg;
 
                 for(String img : listdto.get(i).getProductimagepaths()){
-                    log.info("이미지 감지 : "+img);
 
                     Path imgpath = Paths.get(img);
                     byte[] imageData = Files.readAllBytes(imgpath);
 
                     String base64encode = Base64.getEncoder().encodeToString(imageData);
-
-                    base64encodelist.add("<img src='data:image/jpeg;base64," + base64encode + "'>");
-                    log.info("base64 인코딩 : "+base64encodelist);
+                    base64encodelist.add("data:image/jpeg;base64," + base64encode);
 
                 }
                 base64encodeimg = base64encodelist.toArray(new String[0]);
@@ -104,9 +98,17 @@ public class ProductRestController {
 
 
 
-
         return listdto;
     }
+
+    @DeleteMapping("/delete/{no}")
+    public void product_delete(@PathVariable Long no){
+        log.info("DELETE /product/delete..."+no);
+        productService.deleteProduct(no);
+
+    }
+
+
 
     @GetMapping("/keyword/list")
     public List<ProductKeywordDto> getKeyword_List(){

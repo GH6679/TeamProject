@@ -30,6 +30,8 @@
             if(response != null){
             const productData = response.data;
             productData.forEach(data => {CreateProductList(data)});
+            //게시판 열기 등록
+            initGetProduct();
 
             }
 
@@ -97,26 +99,27 @@
     divEl.appendChild(headerEl);
     divEl.appendChild(bodyEl);
 
-    var span1 = document.createElement("span");
-    var span2 = document.createElement("span");
-    var span3 = document.createElement("span");
+    var pcod = document.createElement("span");
+    var pname = document.createElement("a");
+    var ptime = document.createElement("span");
 
-    span1.className = "productcode"
-    span1.textContent = data.productcode;
+    pcod.className = "productcode"
+    pcod.textContent = data.productcode;
 
-    span2.className = "productname"
-    span2.textContent = data.productname;
+    pname.className = "productname"
+    pname.textContent = data.productname;
+    pname.href = "/product/get/"+data.productcode;
 
-    span3.className = "producttime"
-    span3.textContent = data.producttime;
+    ptime.className = "producttime"
+    ptime.textContent = data.producttime;
 
     headernameEl.style.flex = "1";
-    span3.style.flex = "1";
+    ptime.style.flex = "1";
 
     headerEl.appendChild(headernameEl);
-    headernameEl.appendChild(span1);
-    headernameEl.appendChild(span2);
-    headerEl.appendChild(span3);
+    headernameEl.appendChild(pcod);
+    headernameEl.appendChild(pname);
+    headerEl.appendChild(ptime);
     headerEl.appendChild(headkeyEl);
 
     bodyEl.appendChild(bodyimgelEl);
@@ -126,7 +129,10 @@
 
 
     menu_list_el.appendChild(divEl);
+
     }
+
+
 
 
 

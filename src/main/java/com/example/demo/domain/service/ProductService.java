@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -22,6 +23,21 @@ public class ProductService {
 
     @Autowired
     private ProductKeywordRepository productKeywordRepository;
+
+    public ProductDto getProductOne(Long no) {
+        Optional<Product> optionalProduct = productRepository.findById(no);
+
+        Product product = optionalProduct.get();
+        ProductDto dto = new ProductDto();
+        dto.setProductcode(product.getProductcode());
+        dto.setProducttype(product.getProducttype());
+        dto.setProductname(product.getProductname());
+        dto.setProducttime(product.getProducttime());
+        dto.setProductcontext(product.getProductcontext());
+        dto.setProductimagepaths(product.getProductimagepaths());
+
+        return dto;
+    }
 
     //상품 목록을 불러오는 서비스
     public List<ProductDto> getProductList(){
@@ -50,6 +66,8 @@ public class ProductService {
 
         return returnList;
     }
+
+
 
     //키워드를 등록하는 서비스
     public void setKeyword(ProductKeywordDto dto) {
@@ -101,5 +119,10 @@ public class ProductService {
 
         productKeywordRepository.deleteById(no);
 
+    }
+
+    public void deleteProduct(Long no) {
+
+        productRepository.deleteById(no);
     }
 }
