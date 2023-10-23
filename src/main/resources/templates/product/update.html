@@ -18,11 +18,11 @@
         .wepper .header .header-img {
             border : 1px solid black;
             margin : 10px;
-            height : 400px;
+            height : auto;
             width : 50%;
         }
         .wepper .header .header-img img{
-            max-width : 100%;
+            max-width: 100%;
             height : auto;
             display : block;
             margin : 0 auto;
@@ -37,22 +37,27 @@
             margin : 0 auto;
             border : 1px solid black;
             width : 900px;
-            height : 1200px;
+            height : auto;
         }
         .wepper .body .body-top{
             border : 1px solid black;
-            height : 5%;
+            height : auto;
             margin : 5px;
         }
         .wepper .body .body-mid{
             border : 1px solid black;
-            height : 80%;
+            height : auto;
             margin : 5px;
         }
-        .wepper .body .body-mid span{
-        te
+        .wepper .body .body-mid div> img{
+            max-width: 100%;
+            height : auto;
+            display : block;
+            margin : 0 auto;
         }
         .wepper .body .body-btm{
+            border : 1px solid black;
+            height : auto;
             margin : 5px;
         }
 
@@ -76,9 +81,9 @@
 
             </div>
             <div class="body-mid">
-                <span th:text="${productDto.productcontext}">
+                <input th:value="${productDto.productcontext}" />
 
-                </span>
+                </input>
                 <div th:each="item : ${productDto.productimagepaths}" th:if="${item} != ${productDto.productimagepaths[0]}">
                     <img th:src="${item}">
                 </div>

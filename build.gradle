@@ -43,6 +43,20 @@ dependencies {
 	//FILE UPLOAD
 	implementation 'commons-fileupload:commons-fileupload:1.5'
 
+	//SECURITY
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	//02CONTROLLER_VALIDATION
+	implementation 'org.hibernate.validator:hibernate-validator'
+	implementation 'javax.validation:validation-api'
+
+	//OAUTH2
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	//MAIL
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 	//TEST
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

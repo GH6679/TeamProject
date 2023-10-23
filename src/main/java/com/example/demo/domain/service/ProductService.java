@@ -9,15 +9,21 @@ import com.example.demo.domain.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Slf4j
 public class ProductService {
+
+    String path = "c:\\etc\\products";
     @Autowired
     private ProductRepository productRepository;
 
@@ -43,7 +49,7 @@ public class ProductService {
 
         for(int i=0; i<entityimageNames.length;i++){
 
-            imagePaths.add(product.getProductpath()+entityimageNames[i]);
+            imagePaths.add(product.getProductpath()+"\\"+entityimageNames[i]);
 
         }
         imagePathstoString = imagePaths.toArray(new String[0]);
@@ -78,7 +84,7 @@ public class ProductService {
 
             for(int j=0; j<entityimageNames.length;j++){
 
-                imagePaths.add(allProducts.get(i).getProductpath()+entityimageNames[j]);
+                imagePaths.add(allProducts.get(i).getProductpath()+"\\"+entityimageNames[j]);
 
             }
             imagePathstoString = imagePaths.toArray(new String[0]);
@@ -106,7 +112,37 @@ public class ProductService {
     }
 
     //상품을 등록하는 서비스
-    public void setProduct(ProductDto dto) {
+    public void setProduct(ProductDto dto, MultipartFile[] files) throws IOException {
+
+        String imagepath = path+"\\"+dto.getProducttype()+"\\"+ UUID.randomUUID();
+
+        //만약 폴더가 없으면 생성한다.
+        File dir = new File(imagepath);
+        if(!dir.exists())
+            dir.mkdirs();
+
+
+        MultipartFile[] images = files;
+
+        //DB 저장용 toString 으로 변환
+        List<String> imageNamelist = new ArrayList<>();
+        String[] imageNametoString;
+
+        for(MultipartFile img : images){
+            String imgName = img.getOriginalFilename();
+
+            //파일을 실제 서버의 디렉토리에 저장
+            File fileobj = new File(imagepath,imgName);
+            img.transferTo(fileobj);
+
+            imageNamelist.add(imgName);
+
+        }
+        imageNametoString = imageNamelist.toArray(new String[0]);
+
+        dto.setProductimages(imageNametoString);
+        dto.setProductpath(imagepath);
+
         //dto => entity
         Product product = Product.builder()
                 .productcode(null)
@@ -119,7 +155,6 @@ public class ProductService {
 
                 .build();
 
-        System.out.println("dto : "+dto);
         productRepository.save(product);
     }
 
@@ -150,6 +185,26 @@ public class ProductService {
 
     public void deleteProduct(Long no) {
 
+        Optional<Product> optionalProduct = productRepository.findById(no);
+        Product product = optionalProduct.get();
+
+        String imagePath = product.getProductpath();
+
+        //경로에 파일이 있으면 삭제
+        if(imagePath!=null) {
+            File dir = new File(imagePath);
+            if (dir.exists()) {
+                File files[] = dir.listFiles();
+                for (File file : files) {
+                    file.delete();
+                }
+                dir.delete();
+            }
+        }
+
+
+
         productRepository.deleteById(no);
+
     }
 }

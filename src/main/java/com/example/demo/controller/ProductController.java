@@ -45,44 +45,7 @@ public class ProductController {
     @PostMapping("/set")
     public String product_post(ProductDto dto, @RequestParam("files") MultipartFile[] files) throws IOException {
 
-        String path = "c:\\etc\\products"+"\\"+dto.getProducttype()+"\\"+ UUID.randomUUID();
-
-
-        //만약 폴더가 없으면 생성한다.
-        File dir = new File(path);
-        if(!dir.exists())
-            dir.mkdirs();
-
-
-        MultipartFile[] images = files;
-
-        //DB 저장용 toString 으로 변환
-        List<String> imageNamelist = new ArrayList<>();
-        String[] imageNametoString;
-
-        for(MultipartFile img : images){
-            String imgName = img.getOriginalFilename();
-
-
-
-
-            //파일을 실제 서버의 디렉토리에 저장
-            File fileobj = new File(path,imgName);
-            img.transferTo(fileobj);
-
-            imageNamelist.add(imgName);
-
-        }
-        imageNametoString = imageNamelist.toArray(new String[0]);
-
-
-
-
-        dto.setProductimages(imageNametoString);
-        dto.setProductpath(path+"\\");
-
-
-        productService.setProduct(dto);
+        productService.setProduct(dto,files);
 
         return "redirect:/product/index";
     }
