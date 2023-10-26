@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.antMatchers("/board/list").permitAll()
 //				.antMatchers("/board/read","/board/post","/board/delete","/board/update").hasAnyRole("USER","ADMIN","MEMBER")
 
-				.antMatchers("/css/**","/js/**","/images/**").permitAll() //자원 경로
+				.antMatchers("/css/**","/js/**","/img/**").permitAll() //자원 경로
 				.antMatchers("/product/index","/product/get/**","/product/list").permitAll()  //메인 페이지 및 상품상세 페이지
 				.antMatchers("/user/**").permitAll() //로그인 로그아웃 회원 가입
 				.antMatchers("/product/set","/product/update","/product/delete/**").hasAnyRole("MEMBER","ADMIN") //상품 등록 , 상품 수정

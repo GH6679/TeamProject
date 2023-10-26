@@ -44,14 +44,14 @@
             border: 1px solid rgba(0, 0, 0, 0.2);
             margin: 5px;
 
-            background-image: url("img/280.jpg");
+            background-image: url("/img/280.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
 
         .nav-bottom>div>.nav-right {
-            background-image: url("img/TeemoPC.jpg");
+            background-image: url("/img/TeemoPC.jpg");
             background-repeat: no-repeat;
             background-size: 220px;
             background-position: center;
@@ -96,25 +96,28 @@
             <div class="nav-right" >
                 <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined prod-icon" href="/product/set" >inventory_2</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  class="material-symbols-outlined cart-icon">shopping_cart</a>
-                <a class="material-symbols-outlined heart-icon">heart_plus</a>
-                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/logout">person</a>
+
+                <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined key-icon" href="/product/keyword/set">key</a>
+                <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined heart-icon">heart_plus</a>
+
+                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="/logout">logout</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/user/login">person</a>
             </div>
         </nav>
         <nav class="nav-bottom">
             <div class="nav-left bottom-left">
                 <ul class=" slide">
-                    <li class="slide_item img01"><img src="../../static/img/game01.jpg" alt=""></li>
-                    <li class="slide_item img02"><img src="../../static/img/game02.jpg" alt=""></li>
-                    <li class="slide_item img03"><img src="../../static/img/game03.jpg" alt=""></li>
-                    <li class="slide_item img04"><img src="../../static/img/game04.png" alt=""></li>
-                    <li class="slide_item img05"><img src="../../static/img/game05.jpg" alt=""></li>
-                    <li class="slide_item img06"><img src="../../static/img/game06.jpg" alt=""></li>
-                    <li class="slide_item img07"><img src="../../static/img/game07.jpg" alt=""></li>
-                    <li class="slide_item img08"><img src="../../static/img/game08.jpg" alt=""></li>
-                    <li class="slide_item img09"><img src="../../static/img/game09.jpg" alt=""></li>
-                    <li class="slide_item img010"><img src="../../static/img/game10.jpg" alt=""></li>
-                    <li class="slide_item img011"><img src="../../static/img/game11.jpg" alt=""></li>
+                    <li class="slide_item img01"><img src="/img/game01.jpg" alt=""></li>
+                    <li class="slide_item img02"><img src="/img/game02.jpg" alt=""></li>
+                    <li class="slide_item img03"><img src="/img/game03.jpg" alt=""></li>
+                    <li class="slide_item img04"><img src="/img/game04.png" alt=""></li>
+                    <li class="slide_item img05"><img src="/img/game05.jpg" alt=""></li>
+                    <li class="slide_item img06"><img src="/img/game06.jpg" alt=""></li>
+                    <li class="slide_item img07"><img src="/img/game07.jpg" alt=""></li>
+                    <li class="slide_item img08"><img src="/img/game08.jpg" alt=""></li>
+                    <li class="slide_item img09"><img src="/img/game09.jpg" alt=""></li>
+                    <li class="slide_item img010"><img src="/img/game10.jpg" alt=""></li>
+                    <li class="slide_item img011"><img src="/img/game11.jpg" alt=""></li>
                 </ul>
             </div>
             <div class="arrow">
@@ -145,7 +148,7 @@
                                 </ul>
                             </div>
                             <!-- ///////////////////////// CPU //////////////////////////////// -->
-                            <div class="option-box opt-cpu" id="tabl01">
+                            <div class="option-box opt-cpu" >
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">
@@ -209,7 +212,7 @@
                                 </div>
                             </div>
                             <!-- ///////////////////////// 메인보드 //////////////////////////////// -->
-                            <div class="option-box opt-board" id="tabl01" style="display: none;">
+                            <div class="option-box opt-board" style="display: none;">
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">
@@ -256,7 +259,7 @@
                                 </div>
                             </div>
                             <!-- ///////////////////////// 메모리 ////////////////////////////////  -->
-                            <div class="option-box opt-ran" id="tabl01" style="display: none;">
+                            <div class="option-box opt-ran" style="display: none;">
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">
@@ -285,7 +288,7 @@
                             </div>
 
                             <!-- ///////////////////////// 그래픽카드 ////////////////////////////////  -->
-                            <div class="option-box opt-grap" id="tabl01" style="display: none;">
+                            <div class="option-box opt-grap" style="display: none;">
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">
@@ -307,7 +310,7 @@
                                 </div>
                             </div>
                             <!-- ///////////////////////// SSD ////////////////////////////////  -->
-                            <div class="option-box opt-ssd" id="tabl01" style="display: none;">
+                            <div class="option-box opt-ssd" style="display: none;">
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">
@@ -329,7 +332,7 @@
                                 </div>
                             </div>
                             <!-- ///////////////////////// HDD ////////////////////////////////  -->
-                            <div class="option-box opt-hdd" id="tabl01" style="display: none;">
+                            <div class="option-box opt-hdd" style="display: none;">
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">
@@ -358,7 +361,7 @@
                                 </div>
                             </div>
                             <!-- ///////////////////////// 케이스 ////////////////////////////////  -->
-                            <div class="option-box opt-keis" id="tabl01" style="display: none;">
+                            <div class="option-box opt-keis" style="display: none;">
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">
@@ -393,7 +396,7 @@
                                 </div>
                             </div>
                             <!-- ///////////////////////// 파워 ////////////////////////////////  -->
-                            <div class="option-box opt-power" id="tabl01" style="display: none;">
+                            <div class="option-box opt-power" style="display: none;">
                                 <div class="op">
                                     <p>제조사</p>
                                     <ul class="op-ul">

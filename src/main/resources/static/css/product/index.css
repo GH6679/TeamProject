@@ -191,6 +191,20 @@ nav>* {
     color: black;
 }
 
+.nav-top>.nav-right>.logout-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 50px;
+}
+
+.nav-top>.nav-right>.logout-icon::after {
+    content: "로그아웃";
+    display: block;
+    font-size: 0.8rem;
+    text-align: center;
+    color: black;
+}
+
 .nav-top>.nav-right>.heart-icon {
     margin-left: 10px;
     margin-right: 10px;
@@ -199,6 +213,20 @@ nav>* {
 
 .nav-top>.nav-right>.heart-icon::after {
     content: "관심상품";
+    display: block;
+    font-size: 0.8rem;
+    text-align: center;
+    color: black;
+}
+
+.nav-top>.nav-right>.key-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 50px;
+}
+
+.nav-top>.nav-right>.key-icon::after {
+    content: "키워드 관리";
     display: block;
     font-size: 0.8rem;
     text-align: center;
