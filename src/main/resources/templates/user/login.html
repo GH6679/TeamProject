@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Insert title here</title>
 
-    <!-- BS5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   
-    <!-- axios -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-
-    <!-- google icon   -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- GOOGLE ICON    -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
         .material-symbols-outlined {
           font-variation-settings:
@@ -27,208 +22,150 @@
     </style>
 
     <style>
-        *{}
-        a{
-            text-decoration: none;
-            color:gray;
-        }
-        body{
+        body {
+            height: 100vh;
+            /* 화면 높이 기준으로 중앙 정렬을 위해 body 높이를 설정 */
+            margin: 0;
+            /* body의 기본 여백 제거 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: whitesmoke;
+
             
-          
         }
+        .container{
+            height: 955px;
+            background-color: white;
+            /* padding: 20px; */
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .jumbotron{
+            border: 1px solid;
+            background-color: white;
+            
+        }
+        .jumbotron>div>div>a{
+            font-size: 10px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        .jumbotron>div>div>a::after {
+            content: '|';
+            position: relative;
 
-        .wrapper{
-          
+            top: 0px;
+            bottom: 0px;
+            left: 10px;
+            right: 0px;
         }
-
-        .wrapper::after{
-            content:'';
-            background-color: lightgray;
-            position:fixed;
-            left:0px;top:0px;
-            width : 100vw;
-            height:100vh;
-            opacity: 0.5;
-            z-index:1;
-        
-
+        .jumbotron>div>div>.member:last-child::after {
+            display: none;
         }
-  
-        .wrapper>header{
-          
+        .btn {
+            background-color: skyblue;
+            color: white;
+            flex: 1;
+            margin: 5px;
+            width: 100px;
         }
-        .wrapper>header>.top-header{
-
+        .login_GKN{
+            text-align: center;
         }
-        .wrapper>header>nav{
-            position:relative;
-            z-index:2;
+        .login_GKN>div{
+            width: 50px; height: 50px;
+            font-size: 35px;
+            
         }
-        
-        .wrapper>main{}
-        .wrapper>main>section{}
-        
-  
-
-  
-
-        .wrapper>main>section .login{
-          text-decoration: none;
-          text-align:right;
-          color:gray;
-          
+        .login_GKN>.kakao{
+            margin-left: 20px;
+            margin-right: 20px;
+            border: 1px solid;
+            border-radius: 50%;
+            background-color: yellow;
         }
-        .wrapper>main>section .id_login_block{
-
-            position:relative;
-            z-index:2;
-            margin-top:200px;
-  
+        .login_GKN>.google{
+            margin-right: 20px;
+            border: 1px solid;
+            border-radius: 50%;
+            background-color: aliceblue;
         }
-
-        .wrapper>main>section>.id_login_block>.header
-        {
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom:10px;
-           
+        .login_GKN>.naver{
+            margin-left: 20px;
+            border: 1px solid;
+            border-radius: 50%;
+            background-color: greenyellow;
         }
-
-        .wrapper>main>section>.id_login_block>.body
-        {
-            display:flex;
-            justify-content: center;
-            align-items: center;
-           
+        .login_GKN>.logcat{
+            margin-top: 150px;
+            /* margin-right: 10px; */
+            width: 370px; height: 100px;
+            background-image: url("img/img_logo_main.png");
+            background-repeat: no-repeat;
+            background-size: 400px;
+            background-position: center;
         }
-        .wrapper>main>section>.id_login_block>.body form{
-            width : 350px;
-        }
-        .wrapper>main>section>.id_login_block>.body form>*{
-            margin : 5px;
-        }
-
-        .wrapper>main>section   .join_req {
-            text-align:right;
-            font-size:0.8rem;
-
-        }
-        .wrapper>main>section  .etc_req{
-            text-align:center;
-            font-size:0.9rem;
-        }
-        .wrapper>main>section .oauth_icon{
-            display:flex;
-            justify-content:center;
-            align-items : center;
-        }
-        .wrapper>main>section .oauth_icon img{
-            display:block;
-
-            width : 45px;
-            height : 45px;
-            margin : 5px;
-            border : 50%;
-            margin-right:15px;
-        }
-        .google_icon{
-            width : 55px;
-            height : 55px;
-        }
-        .google_icon>*{
-            margin-right:10px;
-        }
-
-        .wrapper>footer{}
-        
-
-        
     </style>
 </head>
+
 <body>
-
-
-    <div class="wrapper">
-        <header>
-            <div class="top--header"></div>
-            
-            <!-- NAV -->    
-            <nav class="navbar navbar-expand-lg navbar-light bg-success p-3 mb-1"  >
-
-        </header>
-        <main>
-
-            <section>       
-               <!-- ID 로그인 -->
-                <div class="id_login_block">
-                    <div class="header">
-                        <h3>LOGIN</h3>
-                    </div>
-                    <div class="body">    
-                       
-                        <form name="joinform" action="/user/login" method="post" onsubmit="return false">
-                            <div class="m-2">
-                            
-                            <input name="username" placeholder="INSERT USERNAME" class="form-control"> 
-                            </div>
-                            <div class="m-2">
-                            
-                            <input name="password" type="password"  placeholder="INSERT PASSWORD" class="form-control">
-                            </div>
-                            <div class="m-2 form-check" >   
-                                <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me"/>
-                                <label class="form-check-label" for="rememberMe">로그인 상태를 유지</label>          
-                            </div>
-                            <div>
-                                <button class="btn btn-success w-100"  onclick="isValid()">로그인</button>
-                            </div>
-
-                            <div class="m-2 join_req" >
-                            <a href="/user/join"  >회원가입</a>
-                            </div>
-
-                            <div class="m-2 oauth_icon">
-                                <a href="/oauth2/authorization/kakao"> <img src="/images/kakao_icon.webp" /></a>
-                                <a href="/oauth2/authorization/google"> <img src="/images/google_icon_2.png" class="google_icon" /></a>
-                                <a href="/oauth2/authorization/naver"> <img src="/images/naver_icon.png" /></a>
-                            </div>
-
-                            <div class="m-2 etc_req" >
-                                <a href="javascript:void(0)"  >아이디 찾기</a>
-                                &nbsp;&nbsp;
-                                |
-                                &nbsp;&nbsp;
-                                <a href="javascript:void(0)"  >패스워드 찾기</a>     
-                            </div>
-                        </form>
-                    </div>
+    <div class="container">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="login_GKN">
+                <div class="logcat">
 
                 </div>
-            </section>
+            </div>
+            <div class="jumbotron" style="padding-top:20px;">
+                <form name="joinform" action="/user/login" method="post" onsubmit="return false">
 
-            
-        </main>
-        <footer>
+                    <!-- 제목 -->
+                    <h3 style="text-align:center; margin: 20px; font: 30px bold;">로그인</h3>
 
+                    <!-- 로그인 회원가입 작성 -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="아이디" name="username" maxlength='20'>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="비밀번호" name="password" maxlength='20'>
+                    </div>
 
-        </footer>
-
+                    <!-- 로그인 회원가입 버튼  -->
+                    <input type="submit" class="btn" onclick="isValid()" value="로그인" style="width: 220px;">
+                </form>
+                <div style="display: flex;">
+                    <div><a href="">아이디 찾기</a></div>
+                    <div><a href="">비밀번호 찾기</a></div>
+                    <div><a href="/user/join" class="member">회원가입</a></div>
+                </div>
+            </div>
+            <div class="m-2 oauth_icon">
+                <a href="/oauth2/authorization/kakao"> <img src="/images/kakao_icon.webp" /></a>
+                <a href="/oauth2/authorization/google"> <img src="/images/google_icon_2.png" class="google_icon" /></a>
+                <a href="/oauth2/authorization/naver"> <img src="/images/naver_icon.png" /></a>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
     </div>
-    
-<script>
- 		const isValid = ()=>{
- 			const form = document.joinform;
- 			if(form.username.value.trim()==""){
- 				alert("USERNAME을 입력하세요.");
- 				return;
- 			}
- 			if(form.password.value.trim()==""){
- 				alert("PASSWORD을 입력하세요.");
- 				return;
- 			}
- 			form.submit();
- 		}
- </script>
+
+    <script>
+        const isValid = ()=>{
+            const form = document.joinform;
+            if(form.username.value.trim()==""){
+                alert("USERNAME을 입력하세요.");
+                return;
+            }
+            if(form.password.value.trim()==""){
+                alert("PASSWORD을 입력하세요.");
+                return;
+            }
+            form.submit();
+        }
+    </script>
 </body>
+
 </html>

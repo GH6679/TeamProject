@@ -62,7 +62,7 @@ public class UserController {
 		}
 
 		//04
-		return "redirect:/login?msg=Join_Success!";
+		return "redirect:/product/index?msg=Join_Success!";
 
 	}
 

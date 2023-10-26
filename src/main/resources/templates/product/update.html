@@ -67,11 +67,11 @@
     <div class="wepper">
         <div class="header">
             <div class="header-img">
-                <img th:src="${productDto.productimagepaths[0]}">
+                <img th:src="${productDto.prodimagepaths[0]}">
 
             </div>
             <div class="header-main">
-                <span id="product-No" th:text="${productDto.productcode}"></span>
+                <span id="product-No" th:text="${productDto.prodcode}"></span>
 
             </div>
         </div>
@@ -81,10 +81,10 @@
 
             </div>
             <div class="body-mid">
-                <input th:value="${productDto.productcontext}" />
+                <input th:value="${productDto.prodcontext}" />
 
                 </input>
-                <div th:each="item : ${productDto.productimagepaths}" th:if="${item} != ${productDto.productimagepaths[0]}">
+                <div th:each="item : ${productDto.prodimagepaths}" th:if="${item} != ${productDto.prodimagepaths[0]}">
                     <img th:src="${item}">
                 </div>
 

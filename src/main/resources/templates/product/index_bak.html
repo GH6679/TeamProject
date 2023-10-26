@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>IndexPage</h1>
+
+<div>
+    <a href="/product/set">상품 추가</a>
+    <a href="/product/keyword/set">키워드 추가</a>
+</div>
+<div class="menu-list">
+    상품 리스트<br/>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    const getProductList = ()=>{
+
+        axios.get('/product/list')
+        .then(response=>{
+            console.log(response);
+
+            if(response != null){
+            const productData = response.data;
+            productData.forEach(data => {CreateProductList(data)});
+
+            }
+
+
+        })
+        .catch(error=>console.log(error));
+
+
+
+    };
+
+    getProductList();
+
+    const menu_list_el = document.querySelector('.menu-list');
+    const CreateProductList = (data)=>{
+
+    //전체 div
+    var divEl = document.createElement('div');
+    divEl.className = "productItem";
+    divEl.style.border = "1px solid";
+    divEl.style.width = "500px";
+    divEl.style.height = "150px";
+
+    //헤더
+    var headerEl = document.createElement('div')
+    headerEl.className = "header";
+    headerEl.style.display = "flex"
+    headerEl.style.border = "1px solid";
+
+    //헤더 이름표
+    var headernameEl = document.createElement('div')
+    headernameEl.className = "headername"
+    headernameEl.style.marginleft = "10px";
+
+
+    //키워드 설명
+    var headkeyEl = document.createElement('span')
+    headkeyEl.className = "headkey"
+<!--    headkeyEl.style.display = "none";-->
+    headkeyEl.textContent = "테스트";
+
+    //보디
+    var bodyEl = document.createElement('div')
+    bodyEl.className = "body";
+    bodyEl.style.display = "flex";
+
+    //상품이미지
+    var bodyimgelEl = document.createElement('img')
+    bodyimgelEl.src = data.prodimagepaths[0];
+    bodyimgelEl.style.width = "90px";
+    bodyimgelEl.style.height = "90px";
+    bodyimgelEl.style.border = "1px solid";
+
+<!--    bodyimgelEl.style.background = 'url('+data.productimagepaths[0]+')';-->
+
+    //상품 설명
+    var bodytestEl = document.createElement('div')
+    bodytestEl.className = "bodytext"
+    var spanbodytext = document.createElement("span");
+    spanbodytext.className = "productcontext"
+    spanbodytext.textContent = data.prodcontext;
+    bodytestEl.appendChild(spanbodytext);
+
+
+    divEl.appendChild(headerEl);
+    divEl.appendChild(bodyEl);
+
+    var pcod = document.createElement("span");
+    var pname = document.createElement("a");
+    var ptime = document.createElement("span");
+
+    pcod.className = "productcode"
+    pcod.textContent = data.prodcode;
+
+    pname.className = "productname"
+    pname.textContent = data.prodname;
+    pname.href = "/product/get/"+data.prodcode;
+
+    ptime.className = "producttime"
+    ptime.textContent = data.prodtime;
+
+    headernameEl.style.flex = "1";
+    ptime.style.flex = "1";
+
+    headerEl.appendChild(headernameEl);
+    headernameEl.appendChild(pcod);
+    headernameEl.appendChild(pname);
+    headerEl.appendChild(ptime);
+    headerEl.appendChild(headkeyEl);
+
+    bodyEl.appendChild(bodyimgelEl);
+    bodyEl.appendChild(bodytestEl);
+    bodyimgelEl.style.flex = "1";
+    bodytestEl.style.flex = "1";
+
+
+    menu_list_el.appendChild(divEl);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

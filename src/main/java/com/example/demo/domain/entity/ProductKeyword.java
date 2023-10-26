@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class ProductKeyword {
     @Id
     @GeneratedValue
-    private Integer keyWordNo;
-    private String keyWordname;
-    private String keyWordText;
+    private Integer keywno;
+    private String keywname;
+    private String keywtext;
 }

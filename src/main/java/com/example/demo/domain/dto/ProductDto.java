@@ -11,18 +11,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
-    private Long productcode;
-    private String producttype;
-    private String productname;
-    private LocalDateTime producttime;
+    private Long prodcode;
+    private String prodauthor;
+    private String prodtype;
+    private String prodname;
+    private LocalDateTime prodtime;
 
-    private String productcontext;
-    private String[] productexplains;
-    private String[] productkeywords;
-    private String productpath;
-    private String[] productimages;
+    private String prodcontext;
+    private String[] prodexplains;
+    private String[] prodkeywords;
+    private String prodpath;
+    private String[] prodimages;
 
-    private String[] Productimagepaths;
+    private String[] Prodimagepaths;
 }
 
    

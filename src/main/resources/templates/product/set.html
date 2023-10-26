@@ -1,267 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>상품 등록 페이지</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/product/set.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 350,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+    <style>
+        .nav-top>.nav-left {
 
-<!--  BS5  -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            width: 550px;
 
-<form id="product-set-form" action="/product/set" method="post" enctype="multipart/form-data">
-    <div>
-        <label for="form-title">제목</label>
-        <input type="text" name="productname" id="form-title"/>
-    </div>
-    <div>
-        <label for="form-text">내용</label>
-        <textarea type="text" name="productcontext" id="form-text"/></textarea>
-    </div>
-    <div>
-        <label for="form-select">분류</label>
-        <select name="producttype" id="form-select">
-
-        <option value="cpu">CPU</option>
-        <option value="motherboard">메인보드</option>
-        <option value="memory">메모리</option>
-        <option value="gpu">그레픽카드</option>
-        <option value="ssd">SSD</option>
-        <option value="hdd">HDD</option>
-        <option value="case">케이스</option>
-        <option value="power">파워</option>
-        </select>
-    </div>
-    <div>
-        <label for="form-image-input">이미지 선택</label>
-        <input type="file" name="files" id="form-image-input" multiple>
-    </div>
-        <button>등록</button>
-</form>
-
-<div id="set-preview">
-
-
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-
-    //전역 폼데이터
-    let formData = new FormData();
-    //메인 이미지 인덱스 저장용
-    let selected;
-
-
-
-    //미리보기가 생성될 위치
-    const set_previewEl = document.getElementById('set-preview');
-    //폼 데이터 받아오기
-    const product_set_form = document.getElementById('product-set-form')
-
-    //폼 전송
-    product_set_form.addEventListener('submit', function(){
-        event.preventDefault()
-        //원본 formData
-        getformData = new FormData(product_set_form);
-
-        // getformData에서 복사할 키들
-        let keynames = ['productname', 'productcontext','producttype'];
-
-        // getformData에서 값을 가져와서 전역formData로 복사
-        for (let key of keynames) {
-        let value = getformData.get(key);
-        if (value !== null) {
-         formData.append(key, value);
-         };
-      };
-
-      //만약 메인 이미지 선택을 했을경우
-      //다시다 꺼내서 순서를 새로 맞춰준다.
-      if(!(selected==undefined)){
-
-        const imgs = formData.getAll('files');
-        formData.delete('files');
-
-        formData.append('files', imgs[selected]);
-
-        for(let i=0;i<imgs.length;i++){
-            if(i == selected){
-
-            }else{
-                formData.append('files',imgs[i]);
-            }
-        };
-
-      };
-
-
-
-        //완성된 formData 를 서버로 전송
-        axios.post('/product/set',formData,{headers: {'Content-Type' : 'multipart/form-data' }})
-            .then(response =>{
-                alert("ok")
-                window.location.href="/product/index";
-            } )
-            .catch(error =>{alert("fail");
-            location.reload();
-            });
-
-
-    })
-
-    //이미지 업로드
-    document.getElementById('form-image-input').addEventListener('change', function(imgput){
-
-        const imgFiles = imgput.target.files;
-
-    for(let i=0;i<imgFiles.length;i++){
-        formData.append('files',imgFiles[i])
-    }
-
-       //이미지 프리뷰 생성 시작
-       getpreview();
-
-
-    });
-
-      //이미지 프리뷰 생성
-    const getpreview = () => {
-
-        const imgs = formData.getAll('files');
-        for(let i=0;i<imgs.length;i++){
-
-            var preview = document.createElement('div');
-            preview.className = 'previews';
-            preview.style.width = '150px';
-            preview.style.height = '150px';
-            preview.style.position = 'relative';
-
-            var cutimg = document.createElement('a')
-            cutimg.className = 'cutimgs';
-            cutimg.href = "javascript:void(0)";
-            cutimg.style.position = 'absolute';
-            cutimg.style.top = '5%';
-            cutimg.style.right = '5%';
-            cutimg.style.border = '2px solid red';
-            cutimg.style.width = '5px';
-            cutimg.style.height = '5px';
-
-            var viewimg = document.createElement('img');
-            viewimg.className = 'view-img';
-            viewimg.style.width = '150px';
-            viewimg.style.height = '150px';
-
-            preview.appendChild(viewimg);
-            preview.appendChild(cutimg);
-            set_previewEl.appendChild(preview);
-
+            background-image: url("img/img_logo_main.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
         }
 
-        //업로드 이미지를 불러오기 시작
-        onreaderimg();
-        //메인 이미지 선택 리스너 시작
-        selectMainimgListener();
-        //이미지 제외 리스너 시작
-        cutimgListener();
-    }
+        .nav-bottom>.nav-right {
+            background-image: url("img/TeemoPC.jpg");
+            background-repeat: no-repeat;
+            background-size: 220px;
+            background-position: center;
+            width: 340px;
+            height: 95px;
+        }
+    </style>
+</head>
 
-    //업로드 이미지를 불러오기
-    //혼자 비동기로 돌아가서 이미지 프리뷰 틀 생성과 개별적으로 동작함
-    const onreaderimg = ()  => {
-<!--        const formData = new FormData(product_set_form);-->
-        const imgs = formData.getAll('files');
-        const viewimgEl = document.querySelectorAll('.view-img');
+<body>
+    <div>
+        <header>
+            <div class="header-top">
+                <div class="header-left">
+                    <ul>
+                        <li style="width: 50px;" class="header-home"><a href="/product/index" class="material-symbols-outlined "
+                                style="font-size: 22px;">home</a></li>
+                        <li><a href="">PC구매상담</a></li>
+                        <li><a href="">로그인</a></li>
+                    </ul>
+                </div>
+                <div class="header-right">
+                    <ul>
+                        <li><a href="">다나와</a></li>
+                        <li><a href="">에누리</a></li>
+                        <li><a href="">몰테일</a></li>
+                        <li style="width: 100px;"><a href="">플레이오토</a></li>
+                        <li style="width: 85px;"><a href="">메이크샵</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <nav class="nav-top">
+            <div class="nav-left"></div>
+            <div class="nav-center">
+                <div class="search">
+                    <input type="text" class="form-control" placeholder="검색어를 입력하세요">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="material-symbols-outlined cart-icon">shopping_cart</div>
+                <div class="material-symbols-outlined heart-icon">heart_plus</div>
+                <div class="material-symbols-outlined login-icon">person</div>
+            </div>
+        </nav>
+        <nav class="nav-bottom">
+            <div class="nav-left bottom-left">
+                <ul class=" slide">
+                    <li class="slide_item img01"><img src="../../static/img/game01.jpg" alt=""></li>
+                    <li class="slide_item img02"><img src="../../static/img/game02.jpg" alt=""></li>
+                    <li class="slide_item img03"><img src="../../static/img/game03.jpg" alt=""></li>
+                    <li class="slide_item img04"><img src="../../static/img/game04.png" alt=""></li>
+                    <li class="slide_item img05"><img src="../../static/img/game05.jpg" alt=""></li>
+                    <li class="slide_item img06"><img src="../../static/img/game06.jpg" alt=""></li>
+                    <li class="slide_item img07"><img src="../../static/img/game07.jpg" alt=""></li>
+                    <li class="slide_item img08"><img src="../../static/img/game08.jpg" alt=""></li>
+                    <li class="slide_item img09"><img src="../../static/img/game09.jpg" alt=""></li>
+                    <li class="slide_item img010"><img src="../../static/img/game10.jpg" alt=""></li>
+                    <li class="slide_item img011"><img src="../../static/img/game11.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="arrow">
+                <div class="material-symbols-outlined slide_button slide_prev_button">navigate_before</div>
+                <div class="material-symbols-outlined slide_button slide_next_button" style="">navigate_next</div>
+            </div>
 
-        viewimgEl.forEach((imgno,index)=>{
+            <div class="nav-right">
 
-            const reader = new FileReader();
+            </div>
+        </nav>
+        <!--  -->
+        <section style="">
+            <div style="display: flex; justify-content: center;">
+                <h1 style="font-size: 30px;">상품 등록</h1>
+            </div>
+            <!-- ----------------------- form ------------------------------ -->
+            <form id="product-set-form" action="/product/set" method="post" enctype="multipart/form-data">
+                <article style="">
+                    <ul>
+                        <li class="goods-user">
+                            <p style="padding-right: 50px;">작성자</p>
+                            <div>
+                                <input type="text" name="prodauthor" id="form-author" th:value="${#authentication.name}" readonly>
+                            </div>
+                        </li>
+                        <!-- -------------- 제목 ---------------- -->
+                        <li class="goods-name">
+                            <p>제목</p>
+                            <input type="text" name="prodname" id="form-title">
+                        </li>
+                        <!-- -------------- 내용 ---------------- -->
+                        <li class="goods-text">
+                            <p>내용</p>
+                            <input type="text" name="prodcontext" id="form-text">
+                        </li>
+                        <!-- -------------- 가격 ---------------- -->
+                        <li class="goods-money">
+                            <p>가격</p>
+                            <div>
+                                <input type="text">
+                            </div>
+                        </li>
+                        <!-- -------------- 콤보박스 ---------------- -->
+                        <li class="goods-chck">
+                            <p>제품 종류</p>
+                            <div>
+                                <select id="myComboBox" name="prodtype">
+                                    <option value="option1">CPU</option>
+                                    <option value="option2">그래픽카드</option>
+                                    <option value="option3">메인보드</option>
+                                    <option value="option4">SSD</option>
+                                    <option value="option5">HDD</option>
+                                    <option value="option6">메모리</option>
+                                    <option value="option7">케이스</option>
+                                    <option value="option8">파워</option>
+                                </select>
+                            </div>
+                        </li>
+                        <!-- -------------- 사진 ---------------- -->
+                        <li class="goods-pict">
+                            <p class="pict-left">사진</p>
+                            <div class="pict-center" id="pict-center">
+                            </div>
+                        </li>
+                        <li class="pict-right">
+                            <input type="file" name="files" id="form-image-input" multiple>
+                        </li>
+                    </ul>
+                </article>
+                <div>
+                    <button>등록</button>
+                </div>
+            </form>
+        </section>
+        <aside></aside>
+        <footer>
 
-            reader.readAsDataURL(imgs[index]);
-            reader.onload = function(item){
+        </footer>
 
-            imgno.setAttribute('src',item.target.result);
+    </div>
 
-            }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+
+        //전역 폼데이터
+        let formData = new FormData();
+        //메인 이미지 인덱스 저장용
+        let selected;
+
+
+
+        //미리보기가 생성될 위치
+        const set_previewEl = document.getElementById('pict-center');
+        //폼 데이터 받아오기
+        const product_set_form = document.getElementById('product-set-form')
+
+        //폼 전송
+        product_set_form.addEventListener('submit', function(){
+            event.preventDefault()
+            //원본 formData
+            getformData = new FormData(product_set_form);
+
+            // getformData에서 복사할 키들
+            let keynames = ['prodname', 'prodcontext','prodtype','prodauthor'];
+
+            // getformData에서 값을 가져와서 전역formData로 복사
+            for (let key of keynames) {
+            let value = getformData.get(key);
+            if (value !== null) {
+             formData.append(key, value);
+             };
+          };
+
+          //만약 메인 이미지 선택을 했을경우
+          //다시다 꺼내서 순서를 새로 맞춰준다.
+          if(!(selected==undefined)){
+
+            const imgs = formData.getAll('files');
+            formData.delete('files');
+
+            formData.append('files', imgs[selected]);
+
+            for(let i=0;i<imgs.length;i++){
+                if(i == selected){
+
+                }else{
+                    formData.append('files',imgs[i]);
+                }
+            };
+
+          };
+
+
+
+            //완성된 formData 를 서버로 전송
+            axios.post('/product/set',formData,{headers: {'Content-Type' : 'multipart/form-data' }})
+                .then(response =>{
+                    alert("ok")
+                    window.location.href="/product/index";
+                } )
+                .catch(error =>{alert("fail");
+                location.reload();
+                });
+
 
         })
 
-    }
+        //이미지 업로드
+        document.getElementById('form-image-input').addEventListener('change', function(imgput){
 
+            const imgFiles = imgput.target.files;
 
-    //이미지 제외 리스너
-    const cutimgListener = ()=> {
+        for(let i=0;i<imgFiles.length;i++){
+            formData.append('files',imgFiles[i])
+        }
 
-        const cutimgEl = document.querySelectorAll('.cutimgs');
-        cutimgEl.forEach((item,index)=>{
+           //이미지 프리뷰 생성 시작
+           getpreview();
 
-            item.addEventListener('click',function(){
-                console.log(index+"번째 이미지 클릭됨!");
-                const imgs = formData.getAll('files');
-
-
-                formData.delete('files');
-
-
-                for(let i=0;i<imgs.length;i++){
-
-                    console.log("index = "+index+" i = "+i);
-
-                    if(!(index == i)){
-                    console.log("index = "+index+" i = "+i+"통과");
-                        formData.append('files',imgs[i]);
-                    }
-
-                }
-
-                const oldpreviews = document.querySelectorAll('.previews');
-                oldpreviews.forEach(preview => {
-                preview.parentNode.removeChild(preview);
-                });
-
-                getpreview();
-
-            })
 
         });
 
-    }
+          //이미지 프리뷰 생성
+        const getpreview = () => {
 
-    //메인 이미지 선택 리스너
-    const selectMainimgListener = () => {
-        const viewimgEl = document.querySelectorAll('.view-img');
+            const imgs = formData.getAll('files');
+            for(let i=0;i<imgs.length;i++){
+
+                var preview = document.createElement('div');
+                preview.className = 'previews';
+                preview.style.width = '150px';
+                preview.style.height = '150px';
+                preview.style.position = 'relative';
+
+                var cutimg = document.createElement('a')
+                cutimg.className = 'cutimgs';
+                cutimg.href = "javascript:void(0)";
+                cutimg.style.position = 'absolute';
+                cutimg.style.top = '5%';
+                cutimg.style.right = '5%';
+                cutimg.style.border = '2px solid red';
+                cutimg.style.width = '5px';
+                cutimg.style.height = '5px';
+
+                var viewimg = document.createElement('img');
+                viewimg.className = 'view-img';
+                viewimg.style.width = '150px';
+                viewimg.style.height = '150px';
+
+                preview.appendChild(viewimg);
+                preview.appendChild(cutimg);
+                set_previewEl.appendChild(preview);
+
+            }
+
+            //업로드 이미지를 불러오기 시작
+            onreaderimg();
+            //메인 이미지 선택 리스너 시작
+            selectMainimgListener();
+            //이미지 제외 리스너 시작
+            cutimgListener();
+        }
+
+        //업로드 이미지를 불러오기
+        //혼자 비동기로 돌아가서 이미지 프리뷰 틀 생성과 개별적으로 동작함
+        const onreaderimg = ()  => {
+    <!--        const formData = new FormData(product_set_form);-->
+            const imgs = formData.getAll('files');
+            const viewimgEl = document.querySelectorAll('.view-img');
+
+            viewimgEl.forEach((imgno,index)=>{
+
+                const reader = new FileReader();
+
+                reader.readAsDataURL(imgs[index]);
+                reader.onload = function(item){
+
+                imgno.setAttribute('src',item.target.result);
+
+                }
+
+            })
+
+        }
 
 
-        viewimgEl.forEach((item,index)=>{
-            item.addEventListener('click',function(){
-                console.log(index+"번째 이미지 선택됨!");
+        //이미지 제외 리스너
+        const cutimgListener = ()=> {
 
-                selected = index;
+            const cutimgEl = document.querySelectorAll('.cutimgs');
+            cutimgEl.forEach((item,index)=>{
 
-                    viewimgEl.forEach((item,index)=>{
-                    if(index == selected){
-                        item.style.border = '5px solid green';
-                    }else{
-                        item.style.border = '1px solid black';
+                item.addEventListener('click',function(){
+                    console.log(index+"번째 이미지 클릭됨!");
+                    const imgs = formData.getAll('files');
+
+
+                    formData.delete('files');
+
+
+                    for(let i=0;i<imgs.length;i++){
+
+                        console.log("index = "+index+" i = "+i);
+
+                        if(!(index == i)){
+                        console.log("index = "+index+" i = "+i+"통과");
+                            formData.append('files',imgs[i]);
+                        }
+
                     }
+
+                    const oldpreviews = document.querySelectorAll('.previews');
+                    oldpreviews.forEach(preview => {
+                    preview.parentNode.removeChild(preview);
+                    });
+
+                    getpreview();
+
+                })
+
+            });
+
+        }
+
+        //메인 이미지 선택 리스너
+        const selectMainimgListener = () => {
+            const viewimgEl = document.querySelectorAll('.view-img');
+
+
+            viewimgEl.forEach((item,index)=>{
+                item.addEventListener('click',function(){
+                    console.log(index+"번째 이미지 선택됨!");
+
+                    selected = index;
+
+                        viewimgEl.forEach((item,index)=>{
+                        if(index == selected){
+                            item.style.border = '5px solid green';
+                        }else{
+                            item.style.border = '1px solid black';
+                        }
+
+                    });
 
                 });
 
             });
 
-        });
 
 
-
-    };
+        };
 
 
 
 
-</script>
-
+    </script>
 </body>
+
 </html>

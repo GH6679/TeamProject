@@ -21,15 +21,20 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private Long productcode;
-    private String producttype;
-    private String productname;
-    private LocalDateTime producttime;
-    private String productcontext;
+    private Long prodcode;
+    private String prodauthor;
+    private String prodtype;
+    private String prodname;
+    private LocalDateTime prodtime;
+    private String prodcontext;
 
-    private String productpath;
+    private String prodpath;
     @Convert(converter = ProductStringArrayConverter.class)
-    private String[] productimages;
+    private String[] prodimages;
+
+    //승인?
+
+
 
 
 }

@@ -38,7 +38,7 @@ public class UserService {
         {
             if(is_email_auth)   //코드 인증 확인 -> 회원가입 진행
             {
-                dto.setRole("ROLE_USER");
+//                dto.setRole("ROLE_USER");
                 dto.setPassword(passwordEncoder.encode(dto.getPassword()) );
 
                 User user = UserDto.dtoToEntity(dto);

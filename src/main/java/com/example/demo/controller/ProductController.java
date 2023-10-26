@@ -72,12 +72,12 @@ public class ProductController {
             for(int j=0;j<keydto.size();j++){
 
                 //해당 제목과 동일한 키워드가 있는지 확인
-                boolean iskey = Proddto.getProductname().contains(keydto.get(j).getKeyWordname());
+                boolean iskey = Proddto.getProdname().contains(keydto.get(j).getKeywname());
 
                 if(iskey){
 
-                    explain.add(keydto.get(j).getKeyWordText());
-                    keywords.add(keydto.get(j).getKeyWordname());
+                    explain.add(keydto.get(j).getKeywtext());
+                    keywords.add(keydto.get(j).getKeywname());
 
                 }else{
 
@@ -93,18 +93,18 @@ public class ProductController {
             keywordstoString = keywords.toArray(new String[0]);
 
             //리스트에 등록
-            Proddto.setProductkeywords(keywordstoString);
-            Proddto.setProductexplains(explaintoString);
+            Proddto.setProdkeywords(keywordstoString);
+            Proddto.setProdexplains(explaintoString);
 
-            log.info(Proddto.getProductname() +" 해당 키워드 : "+ Arrays.toString(Proddto.getProductkeywords())+ " 내용 : " + Arrays.toString(Proddto.getProductexplains()));
+            log.info(Proddto.getProdname() +" 해당 키워드 : "+ Arrays.toString(Proddto.getProdkeywords())+ " 내용 : " + Arrays.toString(Proddto.getProdexplains()));
 
             //base64 인코딩
-            if(!(Proddto.getProductimagepaths() ==null)){
+            if(!(Proddto.getProdimagepaths() ==null)){
 
                 List<String> base64encodelist = new ArrayList<>();
                 String[] base64encodeimg;
 
-                for(String img : Proddto.getProductimagepaths()){
+                for(String img : Proddto.getProdimagepaths()){
 
                     Path imgpath = Paths.get(img);
                     byte[] imageData = Files.readAllBytes(imgpath);
@@ -114,7 +114,7 @@ public class ProductController {
 
                 }
                 base64encodeimg = base64encodelist.toArray(new String[0]);
-                Proddto.setProductimagepaths(base64encodeimg);
+                Proddto.setProdimagepaths(base64encodeimg);
 
 
             }
@@ -146,12 +146,12 @@ public class ProductController {
         for(int j=0;j<keydto.size();j++){
 
             //해당 제목과 동일한 키워드가 있는지 확인
-            boolean iskey = Proddto.getProductname().contains(keydto.get(j).getKeyWordname());
+            boolean iskey = Proddto.getProdname().contains(keydto.get(j).getKeywname());
 
             if(iskey){
 
-                explain.add(keydto.get(j).getKeyWordText());
-                keywords.add(keydto.get(j).getKeyWordname());
+                explain.add(keydto.get(j).getKeywtext());
+                keywords.add(keydto.get(j).getKeywname());
 
             }else{
 
@@ -167,18 +167,18 @@ public class ProductController {
         keywordstoString = keywords.toArray(new String[0]);
 
         //리스트에 등록
-        Proddto.setProductkeywords(keywordstoString);
-        Proddto.setProductexplains(explaintoString);
+        Proddto.setProdkeywords(keywordstoString);
+        Proddto.setProdexplains(explaintoString);
 
-        log.info(Proddto.getProductname() +" 해당 키워드 : "+ Arrays.toString(Proddto.getProductkeywords())+ " 내용 : " + Arrays.toString(Proddto.getProductexplains()));
+        log.info(Proddto.getProdname() +" 해당 키워드 : "+ Arrays.toString(Proddto.getProdkeywords())+ " 내용 : " + Arrays.toString(Proddto.getProdexplains()));
 
         //base64 인코딩
-        if(!(Proddto.getProductimagepaths() ==null)){
+        if(!(Proddto.getProdimagepaths() ==null)){
 
             List<String> base64encodelist = new ArrayList<>();
             String[] base64encodeimg;
 
-            for(String img : Proddto.getProductimagepaths()){
+            for(String img : Proddto.getProdimagepaths()){
 
                 Path imgpath = Paths.get(img);
                 byte[] imageData = Files.readAllBytes(imgpath);
@@ -188,7 +188,7 @@ public class ProductController {
 
             }
             base64encodeimg = base64encodelist.toArray(new String[0]);
-            Proddto.setProductimagepaths(base64encodeimg);
+            Proddto.setProdimagepaths(base64encodeimg);
 
 
         }
@@ -210,9 +210,9 @@ public class ProductController {
     public String product_keyword_post(ProductKeywordDto dto) {
 
         //null값 방지
-        if (dto.getKeyWordname() != null && dto.getKeyWordText() != null && !dto.getKeyWordname().equals("") && !dto.getKeyWordText().equals("")) {
+        if (dto.getKeywname() != null && dto.getKeywtext() != null && !dto.getKeywname().equals("") && !dto.getKeywtext().equals("")) {
             log.info("POST /product/inkeyword..." + dto);
-            dto.setKeyWordNo(null);
+            dto.setKeywno(null);
             productService.setKeyword(dto);
         } else {
             log.info("POST /product/inkeyword...no data");

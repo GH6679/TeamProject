@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/product/index","/product/get/**","/product/list").permitAll()  //메인 페이지 및 상품상세 페이지
 				.antMatchers("/user/**").permitAll() //로그인 로그아웃 회원 가입
 				.antMatchers("/product/set","/product/update","/product/delete/**").hasAnyRole("MEMBER","ADMIN") //상품 등록 , 상품 수정
-				.antMatchers("/product/keyword/set").hasAnyRole("ADMIN")    //키워드 등록 , 수정 , 삭제
+				.antMatchers("/product/keyword/set","/product/keyword/list","/product/keyword/delete/**").hasAnyRole("ADMIN")    //키워드 등록 , 수정 , 삭제
 
 				.anyRequest().authenticated()									//나머지 URL은 모두 인증작업이 완료된 이후 접근가능
 			.and()
@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 //			//로그아웃
 			.logout()
-			.logoutUrl("/user/logout")
+			.logoutUrl("/logout")
 			.permitAll()
 			//.addLogoutHandler(new CustomLogoutHandler())						//세션초기화
 			.addLogoutHandler(new OAuthLogoutHandler())

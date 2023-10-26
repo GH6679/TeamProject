@@ -30,30 +30,32 @@ public class ProductService {
     @Autowired
     private ProductKeywordRepository productKeywordRepository;
 
+    //상품 하나를 불러오는 서비스
     public ProductDto getProductOne(Long no) {
         Optional<Product> optionalProduct = productRepository.findById(no);
 
         //entity => dto
         Product product = optionalProduct.get();
         ProductDto dto = new ProductDto();
-        dto.setProductcode(product.getProductcode());
-        dto.setProducttype(product.getProducttype());
-        dto.setProductname(product.getProductname());
-        dto.setProducttime(product.getProducttime());
-        dto.setProductcontext(product.getProductcontext());
+        dto.setProdcode(product.getProdcode());
+        dto.setProdauthor(product.getProdauthor());
+        dto.setProdtype(product.getProdtype());
+        dto.setProdname(product.getProdname());
+        dto.setProdtime(product.getProdtime());
+        dto.setProdcontext(product.getProdcontext());
 
         //경로와 이미지이름을 합쳐서 dto에 저장
         List<String> imagePaths = new ArrayList<String>();
         String[] imagePathstoString = null;
-        String[] entityimageNames = product.getProductimages();
+        String[] entityimageNames = product.getProdimages();
 
         for(int i=0; i<entityimageNames.length;i++){
 
-            imagePaths.add(product.getProductpath()+"\\"+entityimageNames[i]);
+            imagePaths.add(product.getProdpath()+"\\"+entityimageNames[i]);
 
         }
         imagePathstoString = imagePaths.toArray(new String[0]);
-        dto.setProductimagepaths(imagePathstoString);
+        dto.setProdimagepaths(imagePathstoString);
 
         return dto;
     }
@@ -70,25 +72,26 @@ public class ProductService {
         for(int i=0;i<allProducts.size();i++){
 
             dto = new ProductDto();
-            dto.setProductcode(allProducts.get(i).getProductcode());
-            dto.setProducttype(allProducts.get(i).getProducttype());
-            dto.setProductname(allProducts.get(i).getProductname());
-            dto.setProducttime(allProducts.get(i).getProducttime());
-            dto.setProductcontext(allProducts.get(i).getProductcontext());
-            dto.setProducttype(allProducts.get(i).getProducttype());
+            dto.setProdcode(allProducts.get(i).getProdcode());
+            dto.setProdauthor(allProducts.get(i).getProdauthor());
+            dto.setProdtype(allProducts.get(i).getProdtype());
+            dto.setProdname(allProducts.get(i).getProdname());
+            dto.setProdtime(allProducts.get(i).getProdtime());
+            dto.setProdcontext(allProducts.get(i).getProdcontext());
+            dto.setProdtype(allProducts.get(i).getProdtype());
 
             //경로와 이미지이름을 합쳐서 dto에 저장
             List<String> imagePaths = new ArrayList<String>();
             String[] imagePathstoString = null;
-            String[] entityimageNames = allProducts.get(i).getProductimages();
+            String[] entityimageNames = allProducts.get(i).getProdimages();
 
             for(int j=0; j<entityimageNames.length;j++){
 
-                imagePaths.add(allProducts.get(i).getProductpath()+"\\"+entityimageNames[j]);
+                imagePaths.add(allProducts.get(i).getProdpath()+"\\"+entityimageNames[j]);
 
             }
             imagePathstoString = imagePaths.toArray(new String[0]);
-            dto.setProductimagepaths(imagePathstoString);
+            dto.setProdimagepaths(imagePathstoString);
 
 
 
@@ -104,9 +107,9 @@ public class ProductService {
     public void setKeyword(ProductKeywordDto dto) {
         ProductKeyword productKeyword = new ProductKeyword();
 
-        productKeyword.setKeyWordNo(null);
-        productKeyword.setKeyWordname(dto.getKeyWordname());
-        productKeyword.setKeyWordText(dto.getKeyWordText());
+        productKeyword.setKeywno(null);
+        productKeyword.setKeywname(dto.getKeywname());
+        productKeyword.setKeywtext(dto.getKeywtext());
 
         productKeywordRepository.save(productKeyword);
     }
@@ -114,7 +117,7 @@ public class ProductService {
     //상품을 등록하는 서비스
     public void setProduct(ProductDto dto, MultipartFile[] files) throws IOException {
 
-        String imagepath = path+"\\"+dto.getProducttype()+"\\"+ UUID.randomUUID();
+        String imagepath = path+"\\"+dto.getProdtype()+"\\"+ UUID.randomUUID();
 
         //만약 폴더가 없으면 생성한다.
         File dir = new File(imagepath);
@@ -140,18 +143,19 @@ public class ProductService {
         }
         imageNametoString = imageNamelist.toArray(new String[0]);
 
-        dto.setProductimages(imageNametoString);
-        dto.setProductpath(imagepath);
+        dto.setProdimages(imageNametoString);
+        dto.setProdpath(imagepath);
 
         //dto => entity
         Product product = Product.builder()
-                .productcode(null)
-                .productname(dto.getProductname())
-                .producttype(dto.getProducttype())
-                .productcontext(dto.getProductcontext())
-                .producttime(LocalDateTime.now())
-                .productpath(dto.getProductpath())
-                .productimages(dto.getProductimages())
+                .prodcode(null)
+                .prodauthor(dto.getProdauthor())
+                .prodname(dto.getProdname())
+                .prodtype(dto.getProdtype())
+                .prodcontext(dto.getProdcontext())
+                .prodtime(LocalDateTime.now())
+                .prodpath(dto.getProdpath())
+                .prodimages(dto.getProdimages())
 
                 .build();
 
@@ -168,9 +172,9 @@ public class ProductService {
         for(int i=0;i<productKeyword.size();i++){
             //entity => dto
             dto = new ProductKeywordDto();
-            dto.setKeyWordNo(productKeyword.get(i).getKeyWordNo());
-            dto.setKeyWordname(productKeyword.get(i).getKeyWordname());
-            dto.setKeyWordText(productKeyword.get(i).getKeyWordText());
+            dto.setKeywno(productKeyword.get(i).getKeywno());
+            dto.setKeywname(productKeyword.get(i).getKeywname());
+            dto.setKeywtext(productKeyword.get(i).getKeywtext());
 
             returnList.add(dto);
         }
@@ -183,12 +187,13 @@ public class ProductService {
 
     }
 
+    //상품을 삭제하는 서비스
     public void deleteProduct(Long no) {
 
         Optional<Product> optionalProduct = productRepository.findById(no);
         Product product = optionalProduct.get();
 
-        String imagePath = product.getProductpath();
+        String imagePath = product.getProdpath();
 
         //경로에 파일이 있으면 삭제
         if(imagePath!=null) {

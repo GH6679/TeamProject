@@ -67,37 +67,39 @@
     <div class="wepper">
         <div class="header">
             <div class="header-img">
-                <img th:src="${productDto.productimagepaths[0]}">
+                <img th:src="${productDto.prodimagepaths[0]}">
 
             </div>
             <div class="header-main">
-                <span id="product-No" th:text="${productDto.productcode}"></span>
+                <span id="product-No" th:text="${productDto.prodcode}"></span>
 
             </div>
         </div>
 
         <div class="body">
             <div class="body-top">
-                <div th:each="item,i : ${productDto.productkeywords}">
+                <div th:each="item,i : ${productDto.prodkeywords}">
                         <li th:text="${item}"></li>
                     <div>
-                        <span th:text="${productDto.productexplains[i.index]}"></span>
+                        <span th:text="${productDto.prodexplains[i.index]}"></span>
                     </div>
                 </div>
 
             </div>
             <div class="body-mid">
-                <span th:text="${productDto.productcontext}">
+                <span th:text="${productDto.prodcontext}">
 
                 </span>
-                <div th:each="item : ${productDto.productimagepaths}" th:if="${item} != ${productDto.productimagepaths[0]}">
+                <div th:each="item : ${productDto.prodimagepaths}" th:if="${item} != ${productDto.prodimagepaths[0]}">
                     <img th:src="${item}">
                 </div>
 
 
             </div>
             <div class="body-btm">
-                <a class="btn btn-primary" th:href="@{/product/update(no=${productDto.productcode})}">수정하기</a>
+                <div th:block  th:if="${productDto.prodauthor} == ${#authentication.name}">
+                    <a class="btn btn-primary" th:href="@{/product/update(no=${productDto.prodcode})}">수정하기</a>
+                </div>
             </div>
 
         </div>

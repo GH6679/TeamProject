@@ -46,12 +46,12 @@ public class ProductRestController {
             for(int j=0;j<keydto.size();j++){
 
                 //해당 제목과 동일한 키워드가 있는지 확인
-                boolean iskey = listdto.get(i).getProductname().contains(keydto.get(j).getKeyWordname());
+                boolean iskey = listdto.get(i).getProdname().contains(keydto.get(j).getKeywname());
 
                 if(iskey){
 
-                    explain.add(keydto.get(j).getKeyWordText());
-                    keywords.add(keydto.get(j).getKeyWordname());
+                    explain.add(keydto.get(j).getKeywtext());
+                    keywords.add(keydto.get(j).getKeywname());
 
                 }else{
 
@@ -67,18 +67,18 @@ public class ProductRestController {
             keywordstoString = keywords.toArray(new String[0]);
 
             //리스트에 등록
-            listdto.get(i).setProductkeywords(keywordstoString);
-            listdto.get(i).setProductexplains(explaintoString);
+            listdto.get(i).setProdkeywords(keywordstoString);
+            listdto.get(i).setProdexplains(explaintoString);
 
-            log.info(listdto.get(i).getProductname() +" 해당 키워드 : "+Arrays.toString(listdto.get(i).getProductkeywords())+ " 내용 : " + Arrays.toString(listdto.get(i).getProductexplains()));
+            log.info(listdto.get(i).getProdname() +" 해당 키워드 : "+Arrays.toString(listdto.get(i).getProdkeywords())+ " 내용 : " + Arrays.toString(listdto.get(i).getProdexplains()));
 
             //base64 인코딩
-            if(!(listdto.get(i).getProductimagepaths() ==null)){
+            if(!(listdto.get(i).getProdimagepaths() ==null)){
 
                 List<String> base64encodelist = new ArrayList<>();
                 String[] base64encodeimg;
 
-                for(String img : listdto.get(i).getProductimagepaths()){
+                for(String img : listdto.get(i).getProdimagepaths()){
 
                     Path imgpath = Paths.get(img);
                     byte[] imageData = Files.readAllBytes(imgpath);
@@ -88,7 +88,7 @@ public class ProductRestController {
 
                 }
                 base64encodeimg = base64encodelist.toArray(new String[0]);
-                listdto.get(i).setProductimagepaths(base64encodeimg);
+                listdto.get(i).setProdimagepaths(base64encodeimg);
 
 
             }
