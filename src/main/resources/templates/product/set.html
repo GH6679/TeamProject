@@ -22,14 +22,14 @@
 
             width: 550px;
 
-            background-image: url("img/img_logo_main.png");
+            background-image: url("/img/img_logo_main.png");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
 
         .nav-bottom>.nav-right {
-            background-image: url("img/TeemoPC.jpg");
+            background-image: url("/img/TeemoPC.jpg");
             background-repeat: no-repeat;
             background-size: 220px;
             background-position: center;
@@ -48,7 +48,7 @@
                         <li style="width: 50px;" class="header-home"><a href="/product/index" class="material-symbols-outlined "
                                 style="font-size: 22px;">home</a></li>
                         <li><a href="">PC구매상담</a></li>
-                        <li><a href="">로그인</a></li>
+                        <li><a href="/user/login">로그인</a></li>
                     </ul>
                 </div>
                 <div class="header-right">
@@ -70,35 +70,15 @@
                     <span class="material-symbols-outlined search-icon">search</span>
                 </div>
             </div>
-            <div class="nav-right">
-                <div class="material-symbols-outlined cart-icon">shopping_cart</div>
-                <div class="material-symbols-outlined heart-icon">heart_plus</div>
-                <div class="material-symbols-outlined login-icon">person</div>
-            </div>
-        </nav>
-        <nav class="nav-bottom">
-            <div class="nav-left bottom-left">
-                <ul class=" slide">
-                    <li class="slide_item img01"><img src="../../static/img/game01.jpg" alt=""></li>
-                    <li class="slide_item img02"><img src="../../static/img/game02.jpg" alt=""></li>
-                    <li class="slide_item img03"><img src="../../static/img/game03.jpg" alt=""></li>
-                    <li class="slide_item img04"><img src="../../static/img/game04.png" alt=""></li>
-                    <li class="slide_item img05"><img src="../../static/img/game05.jpg" alt=""></li>
-                    <li class="slide_item img06"><img src="../../static/img/game06.jpg" alt=""></li>
-                    <li class="slide_item img07"><img src="../../static/img/game07.jpg" alt=""></li>
-                    <li class="slide_item img08"><img src="../../static/img/game08.jpg" alt=""></li>
-                    <li class="slide_item img09"><img src="../../static/img/game09.jpg" alt=""></li>
-                    <li class="slide_item img010"><img src="../../static/img/game10.jpg" alt=""></li>
-                    <li class="slide_item img011"><img src="../../static/img/game11.jpg" alt=""></li>
-                </ul>
-            </div>
-            <div class="arrow">
-                <div class="material-symbols-outlined slide_button slide_prev_button">navigate_before</div>
-                <div class="material-symbols-outlined slide_button slide_next_button" style="">navigate_next</div>
-            </div>
+            <div class="nav-right" >
+                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined prod-icon" href="/product/set" >inventory_2</a>
+                <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  class="material-symbols-outlined cart-icon">shopping_cart</a>
 
-            <div class="nav-right">
+                <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined key-icon" href="/product/keyword/set">key</a>
+                <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined heart-icon">heart_plus</a>
 
+                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="/logout">logout</a>
+                <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/user/login">person</a>
             </div>
         </nav>
         <!--  -->
@@ -137,7 +117,7 @@
                         <li class="goods-chck">
                             <p>제품 종류</p>
                             <div>
-                                <select id="myComboBox" name="prodtype">
+                                <select name="prodtype" id="form-select">
                                     <option value="option1">CPU</option>
                                     <option value="option2">그래픽카드</option>
                                     <option value="option3">메인보드</option>

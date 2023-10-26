@@ -226,7 +226,7 @@ nav>* {
 }
 
 .nav-top>.nav-right>.key-icon::after {
-    content: "키워드 관리";
+    content: "키워드";
     display: block;
     font-size: 0.8rem;
     text-align: center;
