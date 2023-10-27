@@ -131,5 +131,13 @@ public class ProductRestController {
         productService.deleteKeyword(no);
     }
 
+    @PutMapping("/keyword/update")
+    public void product_keyword_update(ProductKeywordDto dto){
+
+        log.info("PUT /product/keyword/update..."+dto);
+
+
+    }
+
 
 }
