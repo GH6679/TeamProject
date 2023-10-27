@@ -28,7 +28,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@GetMapping("/logout")
+	public void logout_get() {
 
+		
+	}
 
 	@GetMapping("/login")
 	public void login_get(){

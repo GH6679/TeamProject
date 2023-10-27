@@ -100,8 +100,8 @@
                 <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined key-icon" href="/product/keyword/set">key</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined heart-icon">heart_plus</a>
 
-                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="/logout">logout</a>
-                <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/user/login">person</a>
+                <a th:if="${#authorization.expression('hasRole(''ROLE_USER'')')} or ${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="javascript:logoutAndRedirect()">logout</a>
+                <a th:unless="${#authorization.expression('hasRole(''ROLE_USER'')')} or ${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/user/login">person</a>
             </div>
         </nav>
         <nav class="nav-bottom">
@@ -633,6 +633,7 @@
         </footer>
         <!-- js-->
         <script src="/css/product/js/index.js"></script>
+        <script src="/js/user/logout.js"></script>
         <script>
 
 

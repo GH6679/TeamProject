@@ -55,7 +55,7 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
 
 
 
-		response.sendRedirect("/login");
+		response.sendRedirect("/user/login");
 	}
 
 }
