@@ -23,12 +23,12 @@ public class  Thumb_up{
     private Boolean thumb_up;
     @ManyToOne
     @JoinColumn(name = "username",foreignKey = @ForeignKey(name = "FK_username",
-            foreignKeyDefinition = "FOREIGN KEY (username) REFERENCES User(username) ON DELETE CASCADE ON UPDATE CASCADE") )
+            foreignKeyDefinition = "FOREIGN KEY (username) REFERENCES user(username) ON DELETE CASCADE ON UPDATE CASCADE") )
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "rno",foreignKey = @ForeignKey(name = "FK_rno",
-            foreignKeyDefinition = "FOREIGN KEY (rno) REFERENCES Reply(rno) ON DELETE CASCADE ON UPDATE CASCADE") )
+            foreignKeyDefinition = "FOREIGN KEY (rno) REFERENCES reply(rno) ON DELETE CASCADE ON UPDATE CASCADE") )
     private Reply reply;
 
 }
