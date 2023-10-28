@@ -7,7 +7,7 @@
     <title>Document</title>
 
     <!-- th:fragment     -->
-    <th:block th:insert="/fragments/head.html :: headOutterLink" />
+    <th:block th:insert="@{classpath:/templates/fragments/head :: headOutterLink}" />
 
     <!--css-->
     <link rel="stylesheet" href="/css/product/index.css">
