@@ -33,8 +33,9 @@ public class ProductController {
 
 
     @GetMapping("/index")
-    public void product_index() {
+    public String product_index() {
 
+        return "product/index";
     }
 
     @GetMapping("/set")
