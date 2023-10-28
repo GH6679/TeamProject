@@ -28,5 +28,10 @@ public class User {
     private String provider;
     private String providerId;
 
+    //댓글 신뢰도
+    private Long vouch;
+
+    //profile이미지추가
+    private String profileimage;
 
 }

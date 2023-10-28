@@ -30,6 +30,8 @@ public class UserDto {
 	private String provider;
 	private String providerId;
 
+	private Long vouch;
+
 	public static User dtoToEntity(UserDto dto){
 		User user = User.builder()
 				.username(dto.getUsername())
@@ -42,5 +44,7 @@ public class UserDto {
 				.build();
 		return user;
 	}
+
+	private String profileimage;
 
 }

@@ -159,10 +159,12 @@ section>form>article>ul>.goods-text{
     display: flex;
     justify-content: space-around;
 }
-section>form>article>ul>.goods-text>input{
+section>form>article>ul>.goods-text>textarea{
     width: 700px;
     height: 200px;
     margin-left: 55px;
+
+    resize: none; /* 크기 조절 비활성화 */
 }
 /* --------------------------------------- 금액 ------------------------------------- */
 

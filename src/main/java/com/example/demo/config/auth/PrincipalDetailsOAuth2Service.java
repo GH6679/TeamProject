@@ -74,9 +74,10 @@ public class PrincipalDetailsOAuth2Service extends DefaultOAuth2UserService   im
         //OAuth2UserInfo 확인
         String provider  = oAuth2UserInfo.getProvider();
         String providerId = oAuth2UserInfo.getProviderId();
-        String username = provider+"_"+providerId+"@example.com";    //  /
-        String password = passwordEncoder.encode("1234");
         String email = oAuth2UserInfo.getEmail();
+        String username = email;
+        String password = passwordEncoder.encode("1234");
+
         String role = "ROLE_USER";
 
         //DB 저장
