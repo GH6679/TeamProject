@@ -136,6 +136,7 @@ public class ProductRestController {
 
         log.info("PUT /product/keyword/update..."+dto);
 
+        productService.updateKeyword(dto);
 
     }
 

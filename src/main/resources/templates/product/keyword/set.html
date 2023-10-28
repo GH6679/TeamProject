@@ -25,6 +25,8 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+            cursor: pointer;
+
         }
 
         .nav-bottom>.nav-right {
@@ -62,7 +64,7 @@
             </div>
         </header>
         <nav class="nav-top">
-            <div class="nav-left"></div>
+            <div class="nav-left" onclick="redirectToPage()"></div>
             <div class="nav-center">
                 <div class="search">
                     <input type="text" class="form-control" placeholder="검색어를 입력하세요">
@@ -76,7 +78,7 @@
                 <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined key-icon" href="/product/keyword/set">key</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined heart-icon">heart_plus</a>
 
-                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="/logout">logout</a>
+                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="/user/logout">logout</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/user/login">person</a>
             </div>
         </nav>
@@ -116,6 +118,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
+
+        //간단한 메인페이지 리다이렉트 함수
+        function redirectToPage() {
+        window.location.href = '/product/index';
+        }
 
         //키워드 리스트 를 비동기로 불러오는 함수
         const getKeywordList = ()=>{
@@ -201,7 +208,7 @@
                 const key_nameEl = list_item.querySelector('.key-name');
                 const key_textEl = list_item.querySelector('.key-text');
 
-                key_nameEl.addEventListener('change', function(){
+                key_nameEl.addEventListener('input', function(){
 
                     if(!list_item.querySelector('.key-update')){
                     console.log("변경됨!");
@@ -218,7 +225,7 @@
                     }
 
                 });
-                key_textEl.addEventListener('change', function(){
+                key_textEl.addEventListener('input', function(){
 
                     if(!list_item.querySelector('.key-update')){
                     console.log("변경됨!");
@@ -240,8 +247,26 @@
 
                     const updateEl = list_item.querySelector('.key-update').addEventListener('click', function(){
 
-                        const no = key_noEl.value;
-                        console.log(no+"수정 클릭됨!")
+                        const removeLEU = list_item.querySelector('.key-update');
+
+                        const keywno = list_item.querySelector('.key-no').value;
+                        const keywname = list_item.querySelector('.key-name').value;
+                        const keywtext = list_item.querySelector('.key-text').value;
+
+                        console.log(keywno+"수정 클릭됨!")
+
+                        const formData = new FormData();
+                        formData.append('keywno',keywno);
+                        formData.append('keywname',keywname);
+                        formData.append('keywtext',keywtext);
+
+                        axios.put('/product/keyword/update',formData,{headers: {'Content-Type' : 'multipart/form-data' } })
+                        .then(response =>{
+                            list_item.removeChild(removeLEU);
+                        })
+                        .catch(error => {
+                            alert('수정 실패! '+error)
+                        });
 
 
                     })
@@ -276,6 +301,7 @@
         });
 
         };
+
 
     </script>
 </body>

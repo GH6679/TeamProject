@@ -26,6 +26,8 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+            cursor: pointer;
+
         }
 
         .nav-bottom>.nav-right {
@@ -63,7 +65,7 @@
             </div>
         </header>
         <nav class="nav-top">
-            <div class="nav-left"></div>
+            <div class="nav-left" onclick="redirectToPage()"></div>
             <div class="nav-center">
                 <div class="search">
                     <input type="text" class="form-control" placeholder="검색어를 입력하세요">
@@ -77,7 +79,7 @@
                 <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined key-icon" href="/product/keyword/set">key</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined heart-icon">heart_plus</a>
 
-                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="/logout">logout</a>
+                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="/user/logout">logout</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/user/login">person</a>
             </div>
         </nav>
@@ -155,6 +157,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
+
+        //간단한 메인페이지 리다이렉트 함수
+        function redirectToPage() {
+        window.location.href = '/product/index';
+        }
 
         //전역 폼데이터
         let formData = new FormData();

@@ -212,4 +212,16 @@ public class ProductService {
         productRepository.deleteById(no);
 
     }
+
+    public void updateKeyword(ProductKeywordDto dto) {
+
+        ProductKeyword productKeyword = ProductKeyword.builder()
+                .keywno(dto.getKeywno())
+                .keywname(dto.getKeywname())
+                .keywtext(dto.getKeywtext())
+                .build();
+
+        productKeywordRepository.save(productKeyword);
+
+    }
 }
