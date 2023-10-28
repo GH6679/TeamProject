@@ -6,39 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <!-- th:fragment     -->
+    <th:block th:insert="/fragments/head :: headOutterLink" />
+
     <!--css-->
     <link rel="stylesheet" href="/css/product/index.css">
-    <!-- jQuery 라이브러리를 로드하는 CDN 링크 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-
-
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 350,
-                'GRAD' 0,
-                'opsz' 24
-        }
-    </style>
-    <style>
-        .nav-top>.nav-left {
-
-            width: 550px;
-
-            background-image: url("/img/img_logo_main.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-
-        }
-
-
 
         section>.main-bottom>.shop-top>.shop-box>table>thead>tr>.shop-box-left {
             width: 200px;
@@ -66,71 +40,38 @@
 
 <body>
     <div>
-        <header>
-            <div class="header-top">
-                <div class="header-left">
-                    <ul>
-                        <li style="width: 50px;" class="header-home"><a href="/product/index" class="material-symbols-outlined "
-                                style="font-size: 22px;">home</a></li>
-                        <li><a href="">PC구매상담</a></li>
-                        <li><a href="/user/login">로그인</a></li>
+        <!--  header fragment      -->
+        <div th:replace="/fragments/header :: headerFragment" />
+
+        <!--광고판-->
+        <section>
+            <nav class="nav-bottom">
+                <div class="nav-left bottom-left">
+                    <ul class=" slide">
+                        <li class="slide_item img01"><img src="/img/game01.jpg" alt=""></li>
+                        <li class="slide_item img02"><img src="/img/game02.jpg" alt=""></li>
+                        <li class="slide_item img03"><img src="/img/game03.jpg" alt=""></li>
+                        <li class="slide_item img04"><img src="/img/game04.png" alt=""></li>
+                        <li class="slide_item img05"><img src="/img/game05.jpg" alt=""></li>
+                        <li class="slide_item img06"><img src="/img/game06.jpg" alt=""></li>
+                        <li class="slide_item img07"><img src="/img/game07.jpg" alt=""></li>
+                        <li class="slide_item img08"><img src="/img/game08.jpg" alt=""></li>
+                        <li class="slide_item img09"><img src="/img/game09.jpg" alt=""></li>
+                        <li class="slide_item img010"><img src="/img/game10.jpg" alt=""></li>
+                        <li class="slide_item img011"><img src="/img/game11.jpg" alt=""></li>
                     </ul>
                 </div>
-                <div class="header-right">
-                    <ul>
-                        <li><a href="">다나와</a></li>
-                        <li><a href="">에누리</a></li>
-                        <li><a href="">몰테일</a></li>
-                        <li style="width: 100px;"><a href="">플레이오토</a></li>
-                        <li style="width: 85px;"><a href="">메이크샵</a></li>
-                    </ul>
+                <div class="arrow">
+                    <div class="material-symbols-outlined slide_button slide_prev_button">navigate_before</div>
+                    <div class="material-symbols-outlined slide_button slide_next_button" style="">navigate_next</div>
                 </div>
-            </div>
-        </header>
-        <nav class="nav-top">
-            <div class="nav-left" onclick="redirectToPage()"></div>
-            <div class="nav-center">
-                <div class="search">
-                    <input type="text" class="form-control" placeholder="검색어를 입력하세요">
-                    <span class="material-symbols-outlined search-icon">search</span>
+
+                <div class="nav-right">
+
                 </div>
-            </div>
-            <div class="nav-right" >
-                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined prod-icon" href="/product/set" >inventory_2</a>
-                <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  class="material-symbols-outlined cart-icon">shopping_cart</a>
+            </nav>
+        </section>
 
-                <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined key-icon" href="/product/keyword/set">key</a>
-                <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined heart-icon">heart_plus</a>
-
-                <a th:if="${#authorization.expression('hasRole(''ROLE_USER'')')} or ${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="javascript:logoutAndRedirect()">logout</a>
-                <a th:unless="${#authorization.expression('hasRole(''ROLE_USER'')')} or ${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined login-icon" href="/user/login">person</a>
-            </div>
-        </nav>
-        <nav class="nav-bottom">
-            <div class="nav-left bottom-left">
-                <ul class=" slide">
-                    <li class="slide_item img01"><img src="/img/game01.jpg" alt=""></li>
-                    <li class="slide_item img02"><img src="/img/game02.jpg" alt=""></li>
-                    <li class="slide_item img03"><img src="/img/game03.jpg" alt=""></li>
-                    <li class="slide_item img04"><img src="/img/game04.png" alt=""></li>
-                    <li class="slide_item img05"><img src="/img/game05.jpg" alt=""></li>
-                    <li class="slide_item img06"><img src="/img/game06.jpg" alt=""></li>
-                    <li class="slide_item img07"><img src="/img/game07.jpg" alt=""></li>
-                    <li class="slide_item img08"><img src="/img/game08.jpg" alt=""></li>
-                    <li class="slide_item img09"><img src="/img/game09.jpg" alt=""></li>
-                    <li class="slide_item img010"><img src="/img/game10.jpg" alt=""></li>
-                    <li class="slide_item img011"><img src="/img/game11.jpg" alt=""></li>
-                </ul>
-            </div>
-            <div class="arrow">
-                <div class="material-symbols-outlined slide_button slide_prev_button">navigate_before</div>
-                <div class="material-symbols-outlined slide_button slide_next_button" style="">navigate_next</div>
-            </div>
-
-            <div class="nav-right">
-
-            </div>
-        </nav>
         <div class="main">
             <section>
                 <article class="main-top">
