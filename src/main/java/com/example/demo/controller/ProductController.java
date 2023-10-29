@@ -122,7 +122,7 @@ public class ProductController {
 
 
         model.addAttribute("productDto",Proddto);
-        return "/product/get";
+        return "product/get";
 
     }
 
@@ -197,7 +197,7 @@ public class ProductController {
 
 
         model.addAttribute("productDto",Proddto);
-        return "/product/update";
+        return "product/update";
 
     }
 

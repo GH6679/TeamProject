@@ -169,21 +169,34 @@ section>.page-bottom>.page-box-four>input {
     justify-content: space-around;
     margin-top: 50px;
     width: 1260px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
 }
+.page-two>.thing{
+    margin: 15px;
+    border: 1px solid;
 
+}
+        <!-- ++++++++++++++++++++++++++++++++ 상품 내용 +++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+aside>.thing>.thing-com-list{
+       border:1px solid black;
+       width: 99%;
+       height:auto;
+        margin: 5px;
+}
 aside>.thing>.thing-left>div{
       max-width: 100%;
       height: auto;
       display: flex;
       justify-content: center;
+       margin : 5px;
 }
    aside>.thing>.thing-left>div>.thing-left-in {
                    max-width: 100%;
                    height: auto;
                    display: block;
-                   margin: 0 auto;
-                   border-bottom: 1px solid;
-                   border-top: 1px solid;
+                    margin : 15px;
                }
 
 
