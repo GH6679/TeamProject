@@ -168,7 +168,7 @@ section>.page-bottom>.page-box-four>input {
 
 aside>.thing>.thing-left {
     width: 930px;
-    height: 21000px;
+    height: 100%;
     display: flex;
     justify-content: center;
 }
