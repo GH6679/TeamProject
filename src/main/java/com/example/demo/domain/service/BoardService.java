@@ -10,6 +10,8 @@ import com.example.demo.domain.entity.Board;
 import com.example.demo.domain.entity.Reply;
 import com.example.demo.domain.entity.Thumb_up;
 import com.example.demo.domain.entity.User;
+import com.example.demo.domain.repository.BoardRepository;
+import com.example.demo.domain.repository.ReplyRepository;
 import com.example.demo.domain.repository.Thumb_upRepository;
 import com.example.demo.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
