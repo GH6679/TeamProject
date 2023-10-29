@@ -6,7 +6,7 @@
     <title>Title</title>
 
     <!-- th:fragment     -->
-    <th:block th:insert="/fragments/head :: headOutterLink" />
+    <th:block th:insert="fragments/head :: headOutterLink" />
 
     <!--css-->
     <link rel="stylesheet" href="/css/product/keyword/set.css">
@@ -16,7 +16,7 @@
 <body>
     <div>
         <!--  header fragment      -->
-        <div th:replace="/fragments/header :: headerFragment" />
+        <div th:replace="fragments/header :: headerFragment" />
         <!-- --------------------------------- 키워드 등록---------------------------------------- -->
         <section>
             <div class="keyword-top">

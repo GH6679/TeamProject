@@ -7,7 +7,7 @@
     <title>Document</title>
 
     <!-- th:fragment     -->
-    <th:block th:insert="/fragments/head :: headOutterLink" />
+    <th:block th:insert="fragments/head :: headOutterLink" />
 
     <!--css-->
     <link rel="stylesheet" href="/css/product/index.css">
@@ -41,7 +41,7 @@
 <body>
 <div>
     <!--  header fragment      -->
-    <div th:replace="/fragments/header :: headerFragment" />
+    <div th:replace="fragments/header :: headerFragment" />
 
     <!--광고판-->
     <section>
