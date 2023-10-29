@@ -23,7 +23,13 @@ import java.util.UUID;
 @Slf4j
 public class ProductService {
 
-    String path = "c:\\etc\\products";
+//    //window 용
+//    String path = "c:\\etc\\products";
+//    //리눅스용
+//    String path = "/etc/products";
+    String path;
+
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -51,7 +57,7 @@ public class ProductService {
 
         for(int i=0; i<entityimageNames.length;i++){
 
-            imagePaths.add(product.getProdpath()+"\\"+entityimageNames[i]);
+            imagePaths.add(product.getProdpath()+File.separator+entityimageNames[i]);
 
         }
         imagePathstoString = imagePaths.toArray(new String[0]);
@@ -87,7 +93,7 @@ public class ProductService {
 
             for(int j=0; j<entityimageNames.length;j++){
 
-                imagePaths.add(allProducts.get(i).getProdpath()+"\\"+entityimageNames[j]);
+                imagePaths.add(allProducts.get(i).getProdpath()+File.separator+entityimageNames[j]);
 
             }
             imagePathstoString = imagePaths.toArray(new String[0]);
@@ -116,8 +122,9 @@ public class ProductService {
 
     //상품을 등록하는 서비스
     public void setProduct(ProductDto dto, MultipartFile[] files) throws IOException {
+        path = setOsPath();
 
-        String imagepath = path+"\\"+dto.getProdtype()+"\\"+ UUID.randomUUID();
+        String imagepath = path+File.separator+dto.getProdtype()+File.separator+ UUID.randomUUID();
 
         //만약 폴더가 없으면 생성한다.
         File dir = new File(imagepath);
@@ -223,5 +230,21 @@ public class ProductService {
 
         productKeywordRepository.save(productKeyword);
 
+    }
+
+    public String setOsPath() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        String OS_PATH;
+
+        if (osName.contains("win")) {
+            OS_PATH = "c:\\etc\\products";
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("mac")) {
+            OS_PATH = "/etc/products";
+        } else {
+            // 다른 운영 체제의 경우 처리
+            OS_PATH = "/etc/products"; // 기본값으로 리눅스 경로 사용
+        }
+
+        return OS_PATH;
     }
 }
