@@ -101,7 +101,13 @@ public class BoardRestController {
         return role;
     }
 
-    
+
+    @GetMapping("/getVouch/{username}")
+    public Long getVouch(@PathVariable String username) {
+        Long vouch = boardService.getVouch(username);
+        System.out.println(username+"의 현재 vouch: "+vouch);
+        return vouch;
+    }
 
 
 

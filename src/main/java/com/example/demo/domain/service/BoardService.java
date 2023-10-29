@@ -344,4 +344,11 @@ public class BoardService {
         return role;
     }
 
+
+    public Long getVouch(String username) {
+        User user = userRepository.findById(username).get();
+        Long vouch = user.getVouch();
+        return vouch;
+    }
+
 }

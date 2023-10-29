@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/product/keyword/set","/product/keyword/list","/product/keyword/delete/**").hasAnyRole("ADMIN")    //키워드 등록 , 수정 , 삭제
 
 				.antMatchers("/board/list","/board/read","/board/read/**").permitAll()
-				.antMatchers("/board/reply/list","/board/reply/count").permitAll()
+				.antMatchers("/board/reply/list","/board/reply/count","/board/getVouch/**").permitAll()
 				.antMatchers("/board/post","/board/delete","/board/update").hasAnyRole("USER","ADMIN","MEMBER")
 				.antMatchers("/board/reply/update","/reply/thumbsup").hasAnyRole("USER","ADMIN","MEMBER")
 

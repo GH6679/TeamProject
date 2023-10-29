@@ -657,6 +657,27 @@
     };
     getReplylist();
 
+    //vouch 받아오기
+    let vouch;
+
+   async function getVouch(reply){
+       try {
+           const response = await axios.get("/board/getVouch/" + reply.username);
+           if (response.data != null) {
+               vouch = response.data;
+           } else {
+               vouch = 0;
+           }
+           console.log("vouch in axios: ", vouch);
+           return vouch;
+       } catch (error) {
+
+           vouch = 0;
+           return 0;
+       }
+    }
+    console.log("vouch : ", vouch);
+
 
     //----------------------------------------------------------------
     // Item 만들기
@@ -664,6 +685,8 @@
     const items_el = document.querySelector(".items");
     const CreateItem = (reply) => {
         console.log("reply : ", reply);
+
+
 
         // div 엘리먼트 생성
         var divElement = document.createElement("div");
@@ -693,9 +716,15 @@
         var update_delete_div = document.createElement("div");
         update_delete_div.style.display = "none";
 
+
+
         var span1 = document.createElement("span");
         span1.className = "reply_username me-2";
-        span1.textContent = reply.username;
+        getVouch(reply)
+            .then(vouchValue => {
+                console.log("vouch : ", vouchValue);
+                span1.textContent = reply.username + " 점수(" + vouchValue + ")";
+            });
         var span2 = document.createElement("span");
         span2.className = "reply_regdate";
         span2.textContent = formatter(reply.regdate);
