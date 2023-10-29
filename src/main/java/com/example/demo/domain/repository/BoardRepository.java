@@ -31,13 +31,13 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     );
 
     // Type , Keyword 로 필터링된 count 계산
-    @Query("SELECT COUNT(b) FROM bookdb.board b WHERE b.title LIKE %:keyWord%")
+    @Query("SELECT COUNT(b) FROM Board b WHERE b.title LIKE %:keyWord%")
     Integer countWhereTitleKeyword(@Param("keyWord")String keyWord);
 
-    @Query("SELECT COUNT(b) FROM bookdb.board b WHERE b.username LIKE %:keyWord%")
+    @Query("SELECT COUNT(b) FROM Board b WHERE b.username LIKE %:keyWord%")
     Integer countWhereUsernameKeyword(@Param("keyWord")String keyWord);
 
-    @Query("SELECT COUNT(b) FROM bookdb.board b WHERE b.content LIKE %:keyWord%")
+    @Query("SELECT COUNT(b) FROM Board b WHERE b.content LIKE %:keyWord%")
     Integer countWhereContentKeyword(@Param("keyWord")String keyWord);
 
     @Query(value = "SELECT * FROM bookdb.board b WHERE b.title LIKE %:keyWord%  ORDER BY b.no DESC LIMIT :amount OFFSET :offset", nativeQuery = true)
