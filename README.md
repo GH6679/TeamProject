@@ -52,7 +52,7 @@
 
 ##### IDE : IntelliJ IDEA 2023-06
 ##### SpringBoot 2.7.15
-##### gradle version 8.2.1
+##### maven version 3.1.2
 ##### Git 3.1.1
 ##### Mysql Server 8.0
 ##### Mysql Workbench 8.0
@@ -61,7 +61,7 @@
 
 ## ▶️ DevOps 
 
-##### Amazon Web Service EC2(Deploy Server) jenkins
+##### Amazon Web Service EC2(Deploy Server)
 
 <br/>
 
@@ -100,9 +100,7 @@ https://shields.io/
 |------|---|---|
 |/product/list|GET|상품 목록표시|
 |/product/set|POST|상품 등록|
-|/product/get|GET|상품 상세보기|
-|/product/update|POST|상품 수정|
-|/product/keyword/set|POST|상품 설명용 키워드 등록|
+|/product/keyword|POST|상품 설명용 키워드 등록|
 <br/>
 
 

@@ -10,28 +10,7 @@
     <!--css-->
     <link rel="stylesheet" href="/css/product/get.css">
 
-    <style>
 
-        <!-- +++++++++++++++++++++++++++++++++++++++++ 상품 이미지+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                section>.page-top>.page-top-one>img {
-                   max-width: 100%;
-                   height: auto;
-                   display: block;
-                   margin: 0 auto;
-               }
-
-               aside>.thing>.thing-left>.thing-left-in {
-                   max-width: 100%;
-                   height: auto;
-                   display: block;
-                   margin: 0 auto;
-                   border-bottom: 1px solid;
-                   border-top: 1px solid;
-
-
-               }
-
-    </style>
 </head>
 <body>
 <div>
@@ -43,7 +22,7 @@
         <article class="page-top">
             <div class="page-top-one">
                 <!-- <div class="page-goods"></div> -->
-                <img th:src="${productDto.prodimagepaths[0]}">
+                <img th:src="${productDto.prodimagepaths[0]}" class="page-top-img">
             </div>
             <!-- <div class="page-top-two">다른 사진</div> -->
         </article>

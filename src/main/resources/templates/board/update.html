@@ -66,12 +66,16 @@
         <!-- NAV 상단 게시판 헤더-->
         <nav class="navbar navbar-expand-lg navbar-light p-3 mb-1"  >
             <div class="container-fluid">
-                <a class="navbar-brand text-white" href="/product/index">HOME</a>
-                <!-- <button class="navbar-toggler  text-white ms-5" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
+                <div class="Logoimg">
+                    <a href="/product/index" class="navbar-brand text-white">
+                        <div class="Logosize">
+                            <!-- 로고 Home버튼크기조절 -->
+                            <img style="width: 300px;" src="/img/img_logo_main-removebg-preview.png" alt="" >
+                        </div>
+                    </a>
+                </div>
+
+
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item  ms-5">
@@ -146,14 +150,7 @@
             <!-- aside -->
             <div class="bd-example col-2" style="height:90vh;width:200px;" >
                 <div class="btn-group-vertical p-3" role="group" aria-label="Vertical button group">
-                    <!--
-                    <button type="button" class="btn btn-dark m-1" style="width:150px;">MENU1</button>
-                    <button type="button" class="btn btn-dark m-1" style="width:150px;">MENU2</button>
-                    <button type="button" class="btn btn-dark m-1" style="width:150px;">MENU3</button>
-                    <button type="button" class="btn btn-dark m-1" style="width:150px;">MENU4</button>
-                    <button type="button" class="btn btn-dark m-1" style="width:150px;">MENU5</button>
-                    <button type="button" class="btn btn-dark m-1" style="width:150px;">MENU6</button>
-                    -->
+
                 </div>
             </div>
             <!-- contents -->
@@ -186,36 +183,22 @@
                         <input type="text" class="form-control" id="ex2" placeholder="제목" name="title" th:value="${boardDto.title}">
                     </div>
                     <div class="mb-3 w-50">
-                        <label for="ex2" class="form-label">분류</label>&nbsp;&nbsp;<span class="msg" th:text="${tag}"></span>
-                        <input type="text" class="form-control" id="tag" placeholder="질문유형" name="tag" th:value="${boardDto.tag}">
+                        <label for="ex2" class="form-label">질문 유형</label>
+
+                        <!-- 분류 체크박스 스타트 -->
+                        <div>
+                                <span style="margin: 3px;"><input class="checkbox1" name="box" th:name="tag"
+                                                                  th:value="견적" type="checkbox" onclick="NoMultiChk(this)">견적</span>
+                            <span style="margin: 3px;"><input class="checkbox2" name="box" th:name="tag"
+                                                              th:value="조립" type="checkbox" onclick="NoMultiChk(this)">조립</span>
+                        </div>
+
                     </div>
                     <div class="mb-3 w-50">
                         <label for="exampleFormControlTextarea1" class="form-label">내용</label>
                         <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3" th:text="${boardDto.content}"></textarea>
                     </div>
 
-                    <!--업로드 된 이미지파일 같은거 목록 예정(DC처럼 할까 일반 사이트처럼 할까 고민)-->
-<!--                    <div class="mb-3  w-50" style="border : 1px solid lightgray;border-radius:5px;padding:3px;">-->
-<!--                       <th:block  th:if="${filenames!=null}" >-->
-<!--                           &lt;!&ndash; 문자열을 쉼표(,)로 분할하고 각각의 항목을 출력합니다. &ndash;&gt;-->
-
-<!--                               <div th:each="i : ${#numbers.sequence(0, filenames.length-1)}"       style="display:flex;align-items:center;">-->
-<!--                                   <a th:href="@{/board/download(filename=${filenames[i]}) }">-->
-<!--                                       <span th:text="${filenames[i]}"> </span>&nbsp;&nbsp;-->
-<!--                                       ( <span th:text="${filesizes[i]}"> </span><span> Byte</span> )-->
-<!--                                   </a>-->
-<!--                                   &nbsp;&nbsp;-->
-<!--                                   <a href="javascript:void(0)" style="text-decoration:none; color:black;"   >-->
-<!--                                        <span class="material-symbols-outlined delete_file" th:data-filename="${filenames[i]}" th:data-no="${boardDto.no}">delete</span>-->
-<!--                                   </a>-->
-<!--                               </div>-->
-
-<!--                       </th:block>-->
-<!--                    </div>-->
-                    <!--업로드(이미지 올리는 용도로 할 예정)-->
-<!--                    <div class="mb-3 w-50">-->
-<!--                        <input type="file" name="files" multiple  class="form-control">-->
-<!--                    </div>-->
                     <div class="mb-3  w-50" >
                         <button  class="btn btn-primary">수정요청</button>
                         <a  href="javascript:history.go(-1)"  class="btn btn-primary">이전으로</a>

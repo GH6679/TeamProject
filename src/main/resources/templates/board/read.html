@@ -77,12 +77,14 @@
         <!-- NAV 상단 게시판 헤더-->
         <nav class="navbar navbar-expand-lg navbar-light p-3 mb-1">
             <div class="container-fluid">
-                <a class="navbar-brand text-white" href="/product/index">HOME</a>
-                <!-- <button class="navbar-toggler  text-white ms-5" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
+                <div class="Logoimg">
+                    <a href="/product/index" class="navbar-brand text-white">
+                        <div class="Logosize">
+                            <!-- 로고 Home버튼크기조절 -->
+                            <img style="width: 300px;" src="/img/img_logo_main-removebg-preview.png" alt="" >
+                        </div>
+                    </a>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item  ms-5">
@@ -158,11 +160,9 @@
 
         </nav>
     </header>
-    <main style="margin-left:20%">
-
-        <section class="row">
-            <!-- aside -->
-
+    <main>
+        <div style="margin-left: 20%">
+        <section class="row" style="margin-left: 13.4%; margin-bottom: auto; width: 89%; ">
             <!-- contents -->
             <div class="col">
                 <!-- breadcrumb -->
@@ -175,7 +175,7 @@
                     </ol>
                 </nav>
                 <!-- title -->
-                <h3>BOARD READ</h3>
+                <h3>게시글 읽기</h3>
 
 
                 <div>
@@ -215,66 +215,11 @@
 
 
         </section>
-        <aside style="width: 15%;">
-            <!-- 플로팅 배너 --------------------- -->
-            <div style="height:100px">
-
-            </div>
-            <div id="floatMenu">
-                MENU
-            </div>
-            <!-- 플로팅 배너 end -->
-        </aside>
-        <aside>
-            <aside>
-                <!-- 사이드바 스타트 -->
-                <div class="header2">
-                    <div class="side-nav">
-                        <div class="user">
-                            <img src="" alt="">
-                            <div>
-                                <h2></h2>
-                                <p></p>
-                            </div>
-                            <img src="" alt="">
-                        </div>
-                        <ul>
-                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
-                                <p>dashboard</p>
-                            </li>
-                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
-                                <p>dashboard</p>
-                            </li>
-                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
-                                <p>dashboard</p>
-                            </li>
-                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
-                                <p>dashboard</p>
-                            </li>
-                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
-                                <p>dashboard</p>
-                            </li>
-                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
-                                <p>dashboard</p>
-                            </li>
-                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
-                                <p>dashboard</p>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li><img src="/img/icon/logout.png" alt="" width="50px">
-                                <p>로그아웃</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- 사이드바 엔드 -->
-            </aside>
-        </aside>
-
+        <section style="margin: 10% auto;"></section>
         <!-- REPLY        -->
         <style>
             .reply--block {
+                position: fixed;
                 top: 200px;
                 left: 60%;
 
@@ -384,9 +329,8 @@
                 color: red;
             }
         </style>
-
-        <section class="reply--block" >
-            <h4>REPLY LIST</h4>
+        <section class="reply--block" style="margin-left: 20%;  position: relative; left: -6%; top: -100px;" >
+            <h4>댓글</h4>
             <div>
                 댓글 : <span class="reply--count"></span>
             </div>
@@ -412,6 +356,61 @@
             </div>
 
         </section>
+        </div>
+
+        <aside style="width: 15%;" class="floatingbanner" >
+            <!-- 플로팅 배너 --------------------- -->
+            <div style="height:100px">
+
+            </div>
+            <div id="floatMenu">
+                <img src="/img/SlideIMG/desktopimg-removebg-preview.png"  style="max-width: 100%; height: 100%; margin-top: 32%" alt="">
+            </div>
+            <!-- 플로팅 배너 end -->
+        </aside>
+        <aside>
+            <aside>
+                <!-- 사이드바 스타트 -->
+                <div class="header2">
+                    <div class="side-nav">
+                        <div class="user">
+                            <img src="" alt="">
+                            <div>
+                                <h2></h2>
+                                <p></p>
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                        <ul>
+                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
+                                <p>dashboard</p>
+                            </li>
+                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
+                                <p>dashboard</p>
+                            </li>
+                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
+                                <p>dashboard</p>
+                            </li>
+                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
+                                <p>dashboard</p>
+                            </li>
+                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
+                                <p>dashboard</p>
+                            </li>
+                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
+                                <p>dashboard</p>
+                            </li>
+                            <li><img src="/img/ICONIMG/dashboard.png" alt="" width="50px">
+                                <p>dashboard</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 사이드바 엔드 -->
+            </aside>
+        </aside>
+
+
 
 
     </main>
@@ -422,51 +421,7 @@
 
 </div>
 
-<!-- JS슬라이더------------------------ -->
-<!-- img slider start-->
-<div class="slider">
-    <div class="slides">
-        <!-- radio buttons start -->
-        <input type="radio" name="radio-btn" id="radio1">
-        <input type="radio" name="radio-btn" id="radio2">
-        <input type="radio" name="radio-btn" id="radio3">
-        <input type="radio" name="radio-btn" id="radio4">
-        <input type="radio" name="radio-btn" id="radio5">
-        <!-- radio buttons end -->
-        <!-- slide img start -->
-        <div class="slide first">
-            <img src="/img/SlideIMG/boat-8275962_640.jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="/img/SlideIMG/maltese-1123016_640%20(1).jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="/img/SlideIMG/puppy-1903313_640.jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="/img/SlideIMG/town-8310950_640.jpg" alt="">
-        </div>
 
-        <!-- slide img end -->
-        <!-- automatic navigation start -->
-        <div class="navigaiton-auto">
-            <div class="auto-btn1"></div>
-            <div class="auto-btn2"></div>
-            <div class="auto-btn3"></div>
-            <div class="auto-btn4"></div>
-        </div>
-        <!-- automatic navigation end -->
-    </div>
-    <!-- manual navigation start -->
-    <div class="navigaiton-manual">
-        <label for="radio1" class="manual-btn"></label>
-        <label for="radio2" class="manual-btn"></label>
-        <label for="radio3" class="manual-btn"></label>
-        <label for="radio4" class="manual-btn"></label>
-    </div>
-    <!-- manual navigation end -->
-</div>
-<!-- 이미지 슬라이더 끝 -->
 
 
 <!-- axios -->

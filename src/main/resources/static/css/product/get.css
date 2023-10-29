@@ -51,7 +51,12 @@ section>.page-top>.page-top-one {
 
 
 }
-
+            section>.page-top>.page-top-one>.page-top-img {
+                 max-width: 100%;
+                           height: auto;
+                           display: block;
+                           margin: 0 auto;
+               }
 section>.page-top>.page-top-one>.page-goods {}
 
 section>.page-top>.page-top-two {}
@@ -166,17 +171,26 @@ section>.page-bottom>.page-box-four>input {
     width: 1260px;
 }
 
-aside>.thing>.thing-left {
-    width: 930px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
+aside>.thing>.thing-left>div{
+      max-width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
 }
+   aside>.thing>.thing-left>div>.thing-left-in {
+                   max-width: 100%;
+                   height: auto;
+                   display: block;
+                   margin: 0 auto;
+                   border-bottom: 1px solid;
+                   border-top: 1px solid;
+               }
+
+
+
 aside>.thing>.thing-center{
     display: flex;
     justify-content: center;
-
-    
 }
 aside>.thing>.thing-center>input{
     width: 300px;

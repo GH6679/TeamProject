@@ -262,6 +262,19 @@
             text-align: center;
             color: black;
         }
+        .nav-top>.nav-right>.inventory-icon {
+            margin-left: 10px;
+            margin-right: 10px;
+            font-size: 50px;
+        }
+
+        .nav-top>.nav-right>.inventory-icon::after {
+            content: "상품관리";
+            display: block;
+            font-size: 0.8rem;
+            text-align: center;
+            color: black;
+        }
 
 
 
@@ -301,6 +314,7 @@
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"  class="material-symbols-outlined cart-icon">shopping_cart</a>
 
                 <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined key-icon" href="/product/keyword/set">key</a>
+                <a th:if="${#authorization.expression('hasRole(''ROLE_MEMBER'')')}" class="material-symbols-outlined inventory-icon" href="/product/keyword/set">inventory</a>
                 <a th:unless="${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined heart-icon">heart_plus</a>
 
                 <a th:if="${#authorization.expression('hasRole(''ROLE_USER'')')} or ${#authorization.expression('hasRole(''ROLE_MEMBER'')')} or ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="material-symbols-outlined logout-icon" href="javascript:logoutAndRedirect()">logout</a>

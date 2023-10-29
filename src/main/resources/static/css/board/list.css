@@ -34,7 +34,7 @@ header {
 /* 헤더 게시판(이름) 위치조정 start */
 .collapse> .navbar-nav > .nav-item> .nav-link{
     position:absolute;
-    left: 200px;
+    left: 310px;
 }
 .collapse> .navbar-nav > .nav-item > .test4 {
     border: 1px solid red;
@@ -53,7 +53,15 @@ nav > .collapse > .navbar-nav > .nav-item > .nav-link {
 a{
     text-decoration: none;
 }
+/* 로고 이미지 크기조정 및 위치조정 start */
+.Logoimg{
+    position: absolute;
+    left: -10%;
+    top: -30px;
+    z-index: 5;
+}
 
+/* 로고 이미지 크기조정 및 위치조정 end  */
 
 /* 로그인 로그아웃 버튼 start */
 .logout-btn , .login-btn{
@@ -114,8 +122,8 @@ a{
 
 /* 견적리스트 창 위치조정 */
 .col{
-    /*슬라이더 여백*/
-    /*margin-top: 300px;*/
+    /* 슬라이더 여백 공간 설정 */
+    /* margin-top: 300px; */
 }
 
 
@@ -143,25 +151,26 @@ nav > .container-fluid  > .navbar-nav > .nav-item > .nav-link {
     height: 400px;
     right: 1%;
     top: 100px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    object-fit: contain;
 }
 /* 플로팅배너 위치조정 end */
 
 
 /* 슬라이더 css start*/
 .slider{
-    width: 800px;
-    height: 310px;
+    width: 500px;
+    height: 210px;
     border-radius: 10px;
     overflow: hidden;
     position: absolute;
     top: 100px;
-    left: 370px;
+    left: 470px;
 
 }
 .slides{
     width: 500%;
-    height: 310px;
+    height: 210px;
     display: flex;
 }
 .slides input{
@@ -173,14 +182,15 @@ nav > .container-fluid  > .navbar-nav > .nav-item > .nav-link {
 
 }
 .slide img{
-    width: 800px;
-    height: 310px;
+    width: 500px;
+    height: 210px;
+    object-fit: contain;
 }
 
 /*  css for manual slide navigaiton */
 .navigaiton-manual {
     position: absolute;
-    width: 800px;
+    width: 500px;
     margin-top: -20px;
     display: flex;
     justify-content: center;
@@ -219,10 +229,10 @@ nav > .container-fluid  > .navbar-nav > .nav-item > .nav-link {
 .navigaiton-auto {
     position: absolute;
     display: flex;
-    width: 800px;
+    width: 500px;
     justify-content: center;
     /* 원래 버튼위치 460px입니다 . */
-    margin-top: 290px;
+    margin-top: 190px;
 }
 .navigaiton-auto div{
     border: 2px solid #40d3dc;
@@ -384,30 +394,58 @@ footer > .container > .row > .footer-col > ul {
 
 }
 
-/* 반응형 설정*/
-@media(max-width:767px){
-    .footer-col{
-        width: 50%;
-        margin-bottom: 30px;
-    }
-}
-@media(max-width:574px){
-    .footer-col{
-        width: 100%;
-    }
-}
+
 /* 원크기 위치 가로로 조정 */
 .social-links {
     width: 200px;
     display: flex;
 }
+
+/* 반응형 부분입니다 start ,  515px , */
+/* footer반응형 설정 보류*/
+/* @media(max-width:1024px){
+    .footer{ */
+/* 1024px   기준 */
+/* 일단 footer 특정구간에서 안보이게 설정후 나중에 추가할 예정  */
+/* display: none;
+}
+} */
+@media(max-width:1024px){
+    .footer-col{
+        display: none;
+    }
+}
 /* footer css end */
 
+/* 플로팅배너 반응형 OFF  */
+@media(max-width:1024px){
+    .floatingbanner{
+        display: none;
+    }
+}
+/* 플로팅배너  반응형 OFF END */
+
+/* 슬라이더 반응형부분 OFF 난잡함 우려 */
+@media(max-width:1024px){
+    .slider{
+        display: none;
+
+    }
+}
+@media(max-width:540px){
+    .row >.col > .board-body >.table > thead > tr{
+        font-size: 14px;
+    }
+}
+/* 슬라이더 반응형 END */
+
+/*  */
+
+
+/* 반응형 부분 end */
 
 .wrapper>header>.top-header{}
-.wrapper>header>nav{
-
-}
+.wrapper>header>nav{}
 
 .wrapper>main{}
 .wrapper>main>section{}

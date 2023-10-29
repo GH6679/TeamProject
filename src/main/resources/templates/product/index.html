@@ -783,11 +783,12 @@
 
         //키워드 툴팁 표시
         var headkeyEl = document.createElement('div')
-        headkeyEl.className = "headkey material-symbols-outlined"
-        headkeyEl.textContent = "priority_high";
+        headkeyEl.className = "headkey"
+        //headkeyEl.textContent = "priority_high";
         //-style
             headkeyEl.style.position = "relative";
             headkeyEl.style.display = "inline-block";
+            //priority.png
 
 
         //====================================================================
@@ -803,7 +804,6 @@
             tooltipEl.style.width = "350px";
             tooltipEl.style.height = "350px";
             tooltipEl.style.backgroundColor = "#FFFF99";
-            tooltipEl.style.textalign = "center";
             tooltipEl.style.border = "1px solid black";
             tooltipEl.style.borderRadius = "6px";
             tooltipEl.style.padding = "5px";
@@ -811,14 +811,18 @@
             tooltipEl.style.zIndex = "1";
             tooltipEl.style.top = "100%";
             tooltipEl.style.left = "-25%";
-            tooltipEl.style.marginLeft = -"60px";
             tooltipEl.style.opacity = 0;
             tooltipEl.style.transition = "opacity 0.2s";
 
             //툴팁에 키워드 이름과 키워드 내용을 지정
             const keywordDto_prodkeywords = data.prodkeywords;
             const keywordDto_prodexplains = data.prodexplains;
-            let i
+
+            //해당 하는 키워드가 있을경우 느낌표 이미지를 표시
+            var tooltipimgEl = document.createElement('img')
+            tooltipimgEl.src = "/img/priority.png";
+            headkeyEl.appendChild(tooltipimgEl);
+
             keywordDto_prodkeywords.forEach((keydata , index) => {
 
                 var tooltiptepEl = document.createElement('div')
@@ -827,20 +831,23 @@
                 tooltipkeyEl.textContent = keydata;
                     //style
                     tooltipkeyEl.style.fontSize = "12px";
-                    tooltipkeyEl.style.color = "#fff";
+                    tooltipkeyEl.style.color = "#FFA500";
 
 
                 var tooltiptextEl = document.createElement('span')
                 tooltiptextEl.textContent = keywordDto_prodexplains[index];
                     //style
-                    tooltiptextEl.style.fontSize = "10px";
-                    tooltiptextEl.style.color = "#FFA500";
+                    tooltiptextEl.style.fontSize = "11px";
+                    tooltiptextEl.style.color = "#C0C0C0";
+
+
 
                 tooltiptepEl.appendChild(tooltipkeyEl);
                 tooltiptepEl.appendChild(tooltiptextEl);
                 tooltipEl.appendChild(tooltiptepEl);
 
                 headkeyEl.appendChild(tooltipEl);
+
             });
         }
 

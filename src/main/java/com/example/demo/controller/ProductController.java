@@ -126,6 +126,7 @@ public class ProductController {
 
     }
 
+
     @GetMapping("/update")
     public String product_update(Long no,Model model) throws IOException {
 
