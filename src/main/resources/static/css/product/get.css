@@ -130,6 +130,7 @@ section>.page-bottom>.page-box-two>ul>.page-two-discount {
 section>.page-bottom>.page-box-two>ul>.page-two-link>div {
     font-size: 35px;
     width: 40px;
+
 }
 
 section>.page-bottom>.page-box-three {
@@ -185,12 +186,18 @@ aside>.thing>.thing-com-list{
        height:auto;
         margin: 5px;
 }
+aside>.thing>.thing-left{
+    border-top:1px solid;
+    border-bottom:1px solid;
+}
 aside>.thing>.thing-left>div{
       max-width: 100%;
       height: auto;
       display: flex;
       justify-content: center;
        margin : 5px;
+
+
 }
    aside>.thing>.thing-left>div>.thing-left-in {
                    max-width: 100%;
@@ -202,6 +209,7 @@ aside>.thing>.thing-left>div{
 
 
 aside>.thing>.thing-center{
+    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
