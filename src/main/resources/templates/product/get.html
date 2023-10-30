@@ -91,6 +91,7 @@
             <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
             <div class="thing-left" id="thing-img-id" style="">
+                <span th:text="${productDto.prodcontext}"></span>
                 <div th:each="item : ${productDto.prodimagepaths}" th:if="${item} != ${productDto.prodimagepaths[0]}">
                     <img class="thing-left-in" th:src="${item}">
                 </div>
