@@ -24,9 +24,9 @@
 
 ## ▶️ 구성인원 
 
-##### 윤광혁(조장) : BackEnd (기획,키워드 검색 및 검색 CRUD)
+##### 윤광혁(조장) : BackEnd (기획,상품 CRUD)
 ##### 이재희(조원) : BackEnd (게시판 CRUD)
-##### 이종현(조원) : BackEnd/frontend (BackEnd보조 및 메인 페이지디자인)
+##### 이종현(조원) : BackEnd/frontend (상품 페이지디자인)
 ##### 남대희(조원2 : frontend (게시판 페이지 디자인)
 ##### 이은지(조원) : frontend (상품 페이지 디자인)
 <br/>
